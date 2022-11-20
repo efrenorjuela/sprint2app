@@ -1,19 +1,19 @@
-# @babel/helper-create-regexp-features-plugin
+# @babel/helper-simple-access
 
-> Compile ESNext Regular Expressions to ES5
+> Babel helper for ensuring that access to a given value is performed through simple accesses
 
-See our website [@babel/helper-create-regexp-features-plugin](https://babeljs.io/docs/en/babel-helper-create-regexp-features-plugin) for more information.
+See our website [@babel/helper-simple-access](https://babeljs.io/docs/en/babel-helper-simple-access) for more information.
 
 ## Install
 
 Using npm:
 
 ```sh
-npm install --save @babel/helper-create-regexp-features-plugin
+npm install --save @babel/helper-simple-access
 ```
 
 or using yarn:
 
 ```sh
-yarn add @babel/helper-create-regexp-features-plugin
+yarn add @babel/helper-simple-access
 ```
