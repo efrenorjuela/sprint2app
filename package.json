@@ -1,69 +1,113 @@
 {
-  "_from": "@surma/rollup-plugin-off-main-thread@^2.2.3",
-  "_id": "@surma/rollup-plugin-off-main-thread@2.2.3",
+  "_from": "@testing-library/jest-dom@^5.14.1",
+  "_id": "@testing-library/jest-dom@5.16.5",
   "_inBundle": false,
-  "_integrity": "sha512-lR8q/9W7hZpMWweNiAKU7NQerBnzQQLvi8qnTDU/fxItPhtZVMbPV3lbCwjhIlNBe9Bbr5V+KHshvWmVSG9cxQ==",
-  "_location": "/@surma/rollup-plugin-off-main-thread",
-  "_phantomChildren": {},
+  "_integrity": "sha512-N5ixQ2qKpi5OLYfwQmUb/5mSV9LneAcaUfp32pn4yCnpb8r/Yz0pXFPck21dIicKmi+ta5WRAknkZCfA8refMA==",
+  "_location": "/@testing-library/jest-dom",
+  "_phantomChildren": {
+    "deep-equal": "2.1.0"
+  },
   "_requested": {
     "type": "range",
     "registry": true,
-    "raw": "@surma/rollup-plugin-off-main-thread@^2.2.3",
-    "name": "@surma/rollup-plugin-off-main-thread",
-    "escapedName": "@surma%2frollup-plugin-off-main-thread",
-    "scope": "@surma",
-    "rawSpec": "^2.2.3",
+    "raw": "@testing-library/jest-dom@^5.14.1",
+    "name": "@testing-library/jest-dom",
+    "escapedName": "@testing-library%2fjest-dom",
+    "scope": "@testing-library",
+    "rawSpec": "^5.14.1",
     "saveSpec": null,
-    "fetchSpec": "^2.2.3"
+    "fetchSpec": "^5.14.1"
   },
   "_requiredBy": [
-    "/workbox-build"
+    "#USER",
+    "/"
   ],
-  "_resolved": "https://registry.npmjs.org/@surma/rollup-plugin-off-main-thread/-/rollup-plugin-off-main-thread-2.2.3.tgz",
-  "_shasum": "ee34985952ca21558ab0d952f00298ad2190c053",
-  "_spec": "@surma/rollup-plugin-off-main-thread@^2.2.3",
-  "_where": "D:\\myapp\\node_modules\\workbox-build",
+  "_resolved": "https://registry.npmjs.org/@testing-library/jest-dom/-/jest-dom-5.16.5.tgz",
+  "_shasum": "3912846af19a29b2dbf32a6ae9c31ef52580074e",
+  "_spec": "@testing-library/jest-dom@^5.14.1",
+  "_where": "D:\\myapp",
   "author": {
-    "name": "Surma",
-    "email": "surma@google.com"
+    "name": "Ernesto Garcia",
+    "email": "gnapse@gmail.com",
+    "url": "http://gnapse.github.io"
   },
   "bugs": {
-    "url": "https://github.com/surma/rollup-plugin-off-main-thread/issues"
+    "url": "https://github.com/testing-library/jest-dom/issues"
   },
   "bundleDependencies": false,
   "dependencies": {
-    "ejs": "^3.1.6",
-    "json5": "^2.2.0",
-    "magic-string": "^0.25.0",
-    "string.prototype.matchall": "^4.0.6"
+    "@adobe/css-tools": "^4.0.1",
+    "@babel/runtime": "^7.9.2",
+    "@types/testing-library__jest-dom": "^5.9.1",
+    "aria-query": "^5.0.0",
+    "chalk": "^3.0.0",
+    "css.escape": "^1.5.1",
+    "dom-accessibility-api": "^0.5.6",
+    "lodash": "^4.17.15",
+    "redent": "^3.0.0"
   },
   "deprecated": false,
-  "description": "Use Rollup with workers and ES6 modules today.",
+  "description": "Custom jest matchers to test the state of the DOM",
   "devDependencies": {
-    "chai": "4.2.0",
-    "chalk": "^2.4.2",
-    "karma": "4.2.0",
-    "karma-chai": "0.1.0",
-    "karma-chrome-launcher": "3.0.0",
-    "karma-firefox-launcher": "1.1.0",
-    "karma-mocha": "1.3.0",
-    "karma-safari-launcher": "1.0.0",
-    "karma-safaritechpreview-launcher": "2.0.2",
-    "mocha": "6.1.4",
-    "prettier": "1.18.2",
-    "rollup": "2.2.0"
+    "jest-environment-jsdom-sixteen": "^1.0.3",
+    "jest-watch-select-projects": "^2.0.0",
+    "jsdom": "^16.2.1",
+    "kcd-scripts": "^11.1.0",
+    "pretty-format": "^25.1.0"
   },
-  "homepage": "https://github.com/surma/rollup-plugin-off-main-thread#readme",
-  "license": "Apache-2.0",
-  "main": "index.js",
-  "name": "@surma/rollup-plugin-off-main-thread",
+  "engines": {
+    "node": ">=8",
+    "npm": ">=6",
+    "yarn": ">=1"
+  },
+  "eslintConfig": {
+    "extends": "./node_modules/kcd-scripts/eslint.js",
+    "rules": {
+      "@babel/no-invalid-this": "off"
+    },
+    "overrides": [
+      {
+        "files": [
+          "src/__tests__/*.js"
+        ],
+        "rules": {
+          "max-lines-per-function": "off"
+        }
+      }
+    ]
+  },
+  "eslintIgnore": [
+    "node_modules",
+    "coverage",
+    "dist"
+  ],
+  "files": [
+    "dist",
+    "extend-expect.js",
+    "matchers.js"
+  ],
+  "homepage": "https://github.com/testing-library/jest-dom#readme",
+  "keywords": [
+    "testing",
+    "dom",
+    "jest",
+    "jsdom"
+  ],
+  "license": "MIT",
+  "main": "dist/index.js",
+  "name": "@testing-library/jest-dom",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/surma/rollup-plugin-off-main-thread.git"
+    "url": "git+https://github.com/testing-library/jest-dom.git"
   },
   "scripts": {
-    "fmt": "prettier --write 'tests/**/*.js' *.js *.md *.json",
-    "test": "node ./run_tests.js"
+    "build": "kcd-scripts build",
+    "format": "kcd-scripts format",
+    "lint": "kcd-scripts lint",
+    "setup": "npm install && npm run validate -s",
+    "test": "kcd-scripts test",
+    "test:update": "npm test -- --updateSnapshot --coverage",
+    "validate": "kcd-scripts validate"
   },
-  "version": "2.2.3"
+  "version": "5.16.5"
 }
