@@ -1,17 +1,19 @@
-# Installation
-> `npm install --save @types/jest`
+# @babel/types
 
-# Summary
-This package contains type definitions for Jest (https://jestjs.io/).
+> Babel Types is a Lodash-esque utility library for AST nodes
 
-# Details
-Files were exported from https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/jest.
+See our website [@babel/types](https://babeljs.io/docs/en/babel-types) for more information or the [issues](https://github.com/babel/babel/issues?utf8=%E2%9C%93&q=is%3Aissue+label%3A%22pkg%3A%20types%22+is%3Aopen) associated with this package.
 
-### Additional Details
- * Last updated: Mon, 14 Nov 2022 20:03:04 GMT
- * Dependencies: [@types/expect](https://npmjs.com/package/@types/expect), [@types/pretty-format](https://npmjs.com/package/@types/pretty-format)
- * Global values: `afterAll`, `afterEach`, `beforeAll`, `beforeEach`, `describe`, `expect`, `fail`, `fdescribe`, `fit`, `it`, `jasmine`, `jest`, `pending`, `spyOn`, `test`, `xdescribe`, `xit`, `xtest`
+## Install
 
-# Credits
-These definitions were written by [Asana (https://asana.com)
-//                 Ivo Stratev](https://github.com/NoHomey), [jwbay](https://github.com/jwbay), [Alexey Svetliakov](https://github.com/asvetliakov), [Alex Jover Morales](https://github.com/alexjoverm), [Allan Lukwago](https://github.com/epicallan), [Ika](https://github.com/ikatyang), [Waseem Dahman](https://github.com/wsmd), [Jamie Mason](https://github.com/JamieMason), [Douglas Duteil](https://github.com/douglasduteil), [Ahn](https://github.com/ahnpnl), [Jeff Lau](https://github.com/UselessPickles), [Andrew Makarov](https://github.com/r3nya), [Martin Hochel](https://github.com/hotell), [Sebastian Sebald](https://github.com/sebald), [Andy](https://github.com/andys8), [Antoine Brault](https://github.com/antoinebrault), [Gregor Stamać](https://github.com/gstamac), [ExE Boss](https://github.com/ExE-Boss), [Alex Bolenok](https://github.com/quassnoi), [Mario Beltrán Alarcón](https://github.com/Belco90), [Tony Hallett](https://github.com/tonyhallett), [Jason Yu](https://github.com/ycmjason), [Pawel Fajfer](https://github.com/pawfa), [Alexandre Germain](https://github.com/gerkindev), [Adam Jones](https://github.com/domdomegg), and [Tom Mrazauskas](https://github.com/mrazauskas).
+Using npm:
+
+```sh
+npm install --save-dev @babel/types
+```
+
+or using yarn:
+
+```sh
+yarn add @babel/types --dev
+```
