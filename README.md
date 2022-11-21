@@ -1,19 +1,19 @@
-# @babel/helper-simple-access
+# @babel/runtime
 
-> Babel helper for ensuring that access to a given value is performed through simple accesses
+> babel's modular runtime helpers
 
-See our website [@babel/helper-simple-access](https://babeljs.io/docs/en/babel-helper-simple-access) for more information.
+See our website [@babel/runtime](https://babeljs.io/docs/en/babel-runtime) for more information.
 
 ## Install
 
 Using npm:
 
 ```sh
-npm install --save @babel/helper-simple-access
+npm install --save @babel/runtime
 ```
 
 or using yarn:
 
 ```sh
-yarn add @babel/helper-simple-access
+yarn add @babel/runtime
 ```
