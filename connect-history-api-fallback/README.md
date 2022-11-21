@@ -1,57 +1,160 @@
-# Installation
-> `npm install --save @types/connect-history-api-fallback`
+<h1 align="center">connect-history-api-fallback</h1>
+<p align="center">Middleware to proxy requests through a specified index page, useful for Single Page Applications that utilise the HTML5 History API.</p>
 
-# Summary
-This package contains type definitions for connect-history-api-fallback (https://github.com/bripkens/connect-history-api-fallback#readme).
+<h2>Table of Contents</h2>
 
-# Details
-Files were exported from https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/connect-history-api-fallback.
-## [index.d.ts](https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/connect-history-api-fallback/index.d.ts)
-````ts
-// Type definitions for connect-history-api-fallback 1.3
-// Project: https://github.com/bripkens/connect-history-api-fallback#readme
-// Definitions by: Douglas Duteil <https://github.com/douglasduteil>
-// Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
-// TypeScript Version: 2.3
+<!-- TOC depthFrom:2 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
 
-/// <reference types="node" />
+- [Introduction](#introduction)
+- [Usage](#usage)
+- [Options](#options)
+	- [index](#index)
+	- [rewrites](#rewrites)
+	- [verbose](#verbose)
+	- [htmlAcceptHeaders](#htmlacceptheaders)
+	- [disableDotRule](#disabledotrule)
 
-import { Url } from 'url';
+<!-- /TOC -->
 
-import * as core from "express-serve-static-core";
+## Introduction
 
-export = historyApiFallback;
+Single Page Applications (SPA) typically only utilise one index file that is
+accessible by web browsers: usually `index.html`. Navigation in the application
+is then commonly handled using JavaScript with the help of the
+[HTML5 History API](http://www.w3.org/html/wg/drafts/html/master/single-page.html#the-history-interface).
+This results in issues when the user hits the refresh button or is directly
+accessing a page other than the landing page, e.g. `/help` or `/help/online`
+as the web server bypasses the index file to locate the file at this location.
+As your application is a SPA, the web server will fail trying to retrieve the file and return a *404 - Not Found*
+message to the user.
 
-declare function historyApiFallback(options?: historyApiFallback.Options): core.RequestHandler;
+This tiny middleware addresses some of the issues. Specifically, it will change
+the requested location to the index you specify (default being `/index.html`)
+whenever there is a request which fulfills the following criteria:
 
-declare namespace historyApiFallback {
-    interface Options {
-        readonly disableDotRule?: true | undefined;
-        readonly htmlAcceptHeaders?: ReadonlyArray<string> | undefined;
-        readonly index?: string | undefined;
-        readonly logger?: typeof console.log | undefined;
-        readonly rewrites?: ReadonlyArray<Rewrite> | undefined;
-        readonly verbose?: boolean | undefined;
+ 1. The request is a `GET` or `HEAD` request
+ 2. which accepts `text/html`,
+ 3. is not a direct file request, i.e. the requested path does not contain a
+    `.` (DOT) character and
+ 4. does not match a pattern provided in options.rewrites (see options below)
+
+## Usage
+
+The middleware is available through NPM and can easily be added.
+
+```
+npm install --save connect-history-api-fallback
+```
+
+Import the library
+
+```javascript
+var history = require('connect-history-api-fallback');
+```
+
+Now you only need to add the middleware to your application like so
+
+```javascript
+var connect = require('connect');
+
+var app = connect()
+  .use(history())
+  .listen(3000);
+```
+
+Of course you can also use this piece of middleware with express:
+
+```javascript
+var express = require('express');
+
+var app = express();
+app.use(history());
+```
+
+## Options
+You can optionally pass options to the library when obtaining the middleware
+
+```javascript
+var middleware = history({});
+```
+
+### index
+Override the index (default `/index.html`). This is the request path that will be used when the middleware identifies that the request path needs to be rewritten.
+
+This is not the path to a file on disk. Instead it is the HTTP request path. Downstream connect/express middleware is responsible to turn this rewritten HTTP request path into actual responses, e.g. by reading a file from disk.
+
+```javascript
+history({
+  index: '/default.html'
+});
+```
+
+### rewrites
+Override the index when the request url matches a regex pattern. You can either rewrite to a static string or use a function to transform the incoming request.
+
+The following will rewrite a request that matches the `/\/soccer/` pattern to `/soccer.html`.
+```javascript
+history({
+  rewrites: [
+    { from: /\/soccer/, to: '/soccer.html'}
+  ]
+});
+```
+
+Alternatively functions can be used to have more control over the rewrite process. For instance, the following listing shows how requests to `/libs/jquery/jquery.1.12.0.min.js` and the like can be routed to `./bower_components/libs/jquery/jquery.1.12.0.min.js`. You can also make use of this if you have an API version in the URL path.
+```javascript
+history({
+  rewrites: [
+    {
+      from: /^\/libs\/.*$/,
+      to: function(context) {
+        return '/bower_components' + context.parsedUrl.pathname;
+      }
     }
+  ]
+});
+```
 
-    interface Context {
-        readonly match: RegExpMatchArray;
-        readonly parsedUrl: Url;
-    }
-    type RewriteTo = (context: Context) => string;
+The function will always be called with a context object that has the following properties:
 
-    interface Rewrite {
-        readonly from: RegExp;
-        readonly to: string | RegExp | RewriteTo;
-    }
-}
+ - **parsedUrl**: Information about the URL as provided by the [URL module's](https://nodejs.org/api/url.html#url_url_parse_urlstr_parsequerystring_slashesdenotehost) `url.parse`.
+ - **match**: An Array of matched results as provided by `String.match(...)`.
+ - **request**: The HTTP request object.
 
-````
 
-### Additional Details
- * Last updated: Tue, 06 Jul 2021 18:05:59 GMT
- * Dependencies: [@types/express-serve-static-core](https://npmjs.com/package/@types/express-serve-static-core), [@types/node](https://npmjs.com/package/@types/node)
- * Global values: none
+### verbose
+This middleware does not log any information by default. If you wish to activate logging, then you can do so via the `verbose` option or by specifying a logger function.
 
-# Credits
-These definitions were written by [Douglas Duteil](https://github.com/douglasduteil).
+```javascript
+history({
+  verbose: true
+});
+```
+
+Alternatively use your own logger
+
+```javascript
+history({
+  logger: console.log.bind(console)
+});
+```
+
+### htmlAcceptHeaders
+Override the default `Accepts:` headers that are queried when matching HTML content requests (Default: `['text/html', '*/*']`).
+
+```javascript
+history({
+  htmlAcceptHeaders: ['text/html', 'application/xhtml+xml']
+})
+```
+
+### disableDotRule
+Disables the dot rule mentioned above:
+
+> […] is not a direct file request, i.e. the requested path does not contain a `.` (DOT) character […]
+
+```javascript
+history({
+  disableDotRule: true
+})
+```
