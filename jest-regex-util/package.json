@@ -1,32 +1,27 @@
 {
-  "_from": "jest-regex-util@^27.5.1",
-  "_id": "jest-regex-util@27.5.1",
+  "_from": "jest-regex-util@^28.0.0",
+  "_id": "jest-regex-util@28.0.2",
   "_inBundle": false,
-  "_integrity": "sha512-4bfKq2zie+x16okqDXjXn9ql2B0dScQu+vcwe4TvFVhkVyuWLqpZrZtXxLLWoXYgn0E87I6r6GRYHF7wFZBUvg==",
-  "_location": "/jest-regex-util",
+  "_integrity": "sha512-4s0IgyNIy0y9FK+cjoVYoxamT7Zeo7MhzqRGx7YDYmaQn1wucY9rotiGkBzzcMXTtjrCAP/f7f+E0F7+fxPNdw==",
+  "_location": "/jest-watch-typeahead/jest-regex-util",
   "_phantomChildren": {},
   "_requested": {
     "type": "range",
     "registry": true,
-    "raw": "jest-regex-util@^27.5.1",
+    "raw": "jest-regex-util@^28.0.0",
     "name": "jest-regex-util",
     "escapedName": "jest-regex-util",
-    "rawSpec": "^27.5.1",
+    "rawSpec": "^28.0.0",
     "saveSpec": null,
-    "fetchSpec": "^27.5.1"
+    "fetchSpec": "^28.0.0"
   },
   "_requiredBy": [
-    "/@jest/core",
-    "/@jest/transform",
-    "/jest-config",
-    "/jest-haste-map",
-    "/jest-resolve-dependencies",
-    "/jest-runtime"
+    "/jest-watch-typeahead"
   ],
-  "_resolved": "https://registry.npmjs.org/jest-regex-util/-/jest-regex-util-27.5.1.tgz",
-  "_shasum": "4da143f7e9fd1e542d4aa69617b38e4a78365b95",
-  "_spec": "jest-regex-util@^27.5.1",
-  "_where": "D:\\myapp\\node_modules\\@jest\\transform",
+  "_resolved": "https://registry.npmjs.org/jest-regex-util/-/jest-regex-util-28.0.2.tgz",
+  "_shasum": "afdc377a3b25fb6e80825adcf76c854e5bf47ead",
+  "_spec": "jest-regex-util@^28.0.0",
+  "_where": "D:\\myapp\\node_modules\\jest-watch-typeahead",
   "bugs": {
     "url": "https://github.com/facebook/jest/issues"
   },
@@ -36,7 +31,7 @@
     "@types/node": "*"
   },
   "engines": {
-    "node": "^10.13.0 || ^12.13.0 || ^14.15.0 || >=15.0.0"
+    "node": "^12.13.0 || ^14.15.0 || ^16.10.0 || >=17.0.0"
   },
   "exports": {
     ".": {
@@ -45,7 +40,7 @@
     },
     "./package.json": "./package.json"
   },
-  "gitHead": "67c1aa20c5fec31366d733e901fee2b981cb1850",
+  "gitHead": "279ee6658d763f024d51f340fab6a37c17d94502",
   "homepage": "https://github.com/facebook/jest#readme",
   "license": "MIT",
   "main": "./build/index.js",
@@ -59,5 +54,5 @@
     "directory": "packages/jest-regex-util"
   },
   "types": "./build/index.d.ts",
-  "version": "27.5.1"
+  "version": "28.0.2"
 }
