@@ -1,120 +1,70 @@
-<h1 align="center">TypeScript Scope Manager</h1>
+# Getting Started with Create React App
 
-<p align="center">
-    <img src="https://github.com/typescript-eslint/typescript-eslint/workflows/CI/badge.svg" alt="CI" />
-    <a href="https://www.npmjs.com/package/@typescript-eslint/scope-manager"><img src="https://img.shields.io/npm/v/@typescript-eslint/scope-manager.svg?style=flat-square" alt="NPM Version" /></a>
-    <a href="https://www.npmjs.com/package/@typescript-eslint/scope-manager"><img src="https://img.shields.io/npm/dm/@typescript-eslint/scope-manager.svg?style=flat-square" alt="NPM Downloads" /></a>
-</p>
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-This is a fork of [`eslint-scope`](https://github.com/eslint/eslint-scope), enhanced to support TypeScript functionality.
-[You can view the original license for the code here](https://github.com/eslint/eslint-scope/blob/dbddf14d5771b21b5da704213e4508c660ca1c64/LICENSE).
+## Available Scripts
 
-This package is consumed automatically by [`@typescript-eslint/parser`](../parser).
-You probably don't want to use it directly.
+In the project directory, you can run:
 
-## Getting Started
+### `npm start`
 
-**[You can find our Getting Started docs here](https://typescript-eslint.io/docs)**
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-## Installation
+The page will reload when you make changes.\
+You may also see any lint errors in the console.
 
-```bash
-$ yarn add -D typescript @typescript-eslint/scope-manager
-$ npm i --save-dev typescript @typescript-eslint/scope-manager
-```
+### `npm test`
 
-## API
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `analyze(tree, options)`
+### `npm run build`
 
-Analyses a given AST and returns the resulting `ScopeManager`.
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-```ts
-interface AnalyzeOptions {
-  /**
-   * Known visitor keys.
-   */
-  childVisitorKeys?: Record<string, string[]> | null;
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
 
-  /**
-   * Which ECMAScript version is considered.
-   * Defaults to `2018`.
-   * `'latest'` is converted to 1e8 at parser.
-   */
-  ecmaVersion?: EcmaVersion | 1e8;
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-  /**
-   * Whether the whole script is executed under node.js environment.
-   * When enabled, the scope manager adds a function scope immediately following the global scope.
-   * Defaults to `false`.
-   */
-  globalReturn?: boolean;
+### `npm run eject`
 
-  /**
-   * Implied strict mode (if ecmaVersion >= 5).
-   * Defaults to `false`.
-   */
-  impliedStrict?: boolean;
+**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-  /**
-   * The identifier that's used for JSX Element creation (after transpilation).
-   * This should not be a member expression - just the root identifier (i.e. use "React" instead of "React.createElement").
-   * Defaults to `"React"`.
-   */
-  jsxPragma?: string;
+If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-  /**
-   * The identifier that's used for JSX fragment elements (after transpilation).
-   * If `null`, assumes transpilation will always use a member on `jsxFactory` (i.e. React.Fragment).
-   * This should not be a member expression - just the root identifier (i.e. use "h" instead of "h.Fragment").
-   * Defaults to `null`.
-   */
-  jsxFragmentName?: string | null;
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-  /**
-   * The lib used by the project.
-   * This automatically defines a type variable for any types provided by the configured TS libs.
-   * For more information, see https://www.typescriptlang.org/tsconfig#lib
-   *
-   * Defaults to the lib for the provided `ecmaVersion`.
-   */
-  lib?: Lib[];
+You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-  /**
-   * The source type of the script.
-   */
-  sourceType?: 'script' | 'module';
+## Learn More
 
-  /**
-   * Emit design-type metadata for decorated declarations in source.
-   * Defaults to `false`.
-   */
-  emitDecoratorMetadata?: boolean;
-}
-```
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-Example usage:
+To learn React, check out the [React documentation](https://reactjs.org/).
 
-```ts
-import { analyze } from '@typescript-eslint/scope-manager';
-import { parse } from '@typescript-eslint/typescript-estree';
+### Code Splitting
 
-const code = `const hello: string = 'world';`;
-const ast = parse(code, {
-  // note that scope-manager requires ranges on the AST
-  range: true,
-});
-const scope = analyze(ast, {
-  ecmaVersion: 2020,
-  sourceType: 'module',
-});
-```
+This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-## References
+### Analyzing the Bundle Size
 
-- https://eslint.org/docs/developer-guide/scope-manager-interface
-- https://github.com/eslint/eslint-scope
+This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-## Contributing
+### Making a Progressive Web App
 
-[See the contributing guide here](../../CONTRIBUTING.md)
+This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+
+### Advanced Configuration
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+
+### Deployment
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+
+### `npm run build` fails to minify
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
