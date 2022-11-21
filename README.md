@@ -1,70 +1,325 @@
-# Getting Started with Create React App
+<div align="center">
+  <a href="https://github.com/eslint/eslint"><img width="200" height="200" src="https://cdn.worldvectorlogo.com/logos/eslint.svg"></a>
+  <a href="https://github.com/webpack/webpack"><img width="200" height="200" src="https://webpack.js.org/assets/icon-square-big.svg"></a>
+</div>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[![npm][npm]][npm-url]
+[![node][node]][node-url]
+[![tests][tests]][tests-url]
+[![coverage][cover]][cover-url]
+[![chat][chat]][chat-url]
+[![size][size]][size-url]
 
-## Available Scripts
+# eslint-webpack-plugin
 
-In the project directory, you can run:
+> This is eslint-webpack-plugin 3.0 which works only with webpack 5. For the webpack 4, see the [2.x branch](https://github.com/webpack-contrib/eslint-webpack-plugin/tree/2.x).
 
-### `npm start`
+This plugin uses [`eslint`](https://eslint.org/) to find and fix problems in your JavaScript code
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Getting Started
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+To begin, you'll need to install `eslint-webpack-plugin`:
 
-### `npm test`
+```console
+npm install eslint-webpack-plugin --save-dev
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+or
 
-### `npm run build`
+```console
+yarn add -D eslint-webpack-plugin
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+or
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```console
+pnpm add -D eslint-webpack-plugin
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+> **Note**
+>
+> You also need to install `eslint >= 7` from npm, if you haven't already:
 
-### `npm run eject`
+```console
+npm install eslint --save-dev
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+or
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```console
+yarn add -D eslint
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+or
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```console
+pnpm add -D eslint
+```
 
-## Learn More
+Then add the plugin to your webpack config. For example:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```js
+const ESLintPlugin = require('eslint-webpack-plugin');
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+module.exports = {
+  // ...
+  plugins: [new ESLintPlugin(options)],
+  // ...
+};
+```
 
-### Code Splitting
+## Options
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+You can pass [eslint options](https://eslint.org/docs/developer-guide/nodejs-api#-new-eslintoptions).
 
-### Analyzing the Bundle Size
+> **Note**
+>
+> The config option you provide will be passed to the `ESLint` class.
+> This is a different set of options than what you'd specify in `package.json` or `.eslintrc`.
+> See the [eslint docs](https://eslint.org/docs/developer-guide/nodejs-api#-new-eslintoptions) for more details.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+> **Warning**:
+>
+> In eslint-webpack-plugin version 1 the options were passed to the now deprecated [CLIEngine](https://eslint.org/docs/developer-guide/nodejs-api#cliengine).
 
-### Making a Progressive Web App
+### `context`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- Type:
 
-### Advanced Configuration
+```ts
+type context = string;
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+- Default: `compiler.context`
 
-### Deployment
+A string indicating the root of your files.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+### `eslintPath`
 
-### `npm run build` fails to minify
+- Type:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```ts
+type eslintPath = string;
+```
+
+- Default: `eslint`
+
+Path to `eslint` instance that will be used for linting. If the `eslintPath` is a folder like a official eslint, or specify a `formatter` option. now you don't have to install `eslint`.
+
+### `extensions`
+
+- Type:
+
+```ts
+type extensions = string | Array<string>;
+```
+
+- Default: `'js'`
+
+Specify extensions that should be checked.
+
+### `exclude`
+
+- Type:
+
+```ts
+type exclude = string | Array<string>;
+```
+
+- Default: `'node_modules'`
+
+Specify the files and/or directories to exclude. Must be relative to `options.context`.
+
+### `resourceQueryExclude`
+
+- Type:
+
+```ts
+type resourceQueryExclude = RegExp | Array<RegExp>;
+```
+
+- Default: `[]`
+
+Specify the resource query to exclude.
+
+### `files`
+
+- Type:
+
+```ts
+type files = string | Array<string>;
+```
+
+- Default: `null`
+
+Specify directories, files, or globs. Must be relative to `options.context`.
+Directories are traversed recursively looking for files matching `options.extensions`.
+File and glob patterns ignore `options.extensions`.
+
+### `fix`
+
+- Type:
+
+```ts
+type fix = boolean;
+```
+
+- Default: `false`
+
+Will enable [ESLint autofix feature](https://eslint.org/docs/developer-guide/nodejs-api#-eslintoutputfixesresults).
+
+**Be careful: this option will change source files.**
+
+### `formatter`
+
+- Type:
+
+```ts
+type formatter = string| (
+  results:  Array<import('eslint').ESLint.LintResult>,
+  data?: import('eslint').ESLint.LintResultData | undefined
+) => string
+```
+
+- Default: `'stylish'`
+
+Accepts a function that will have one argument: an array of eslint messages (object). The function must return the output as a string. You can use official [eslint formatters](https://eslint.org/docs/user-guide/formatters/).
+
+### `lintDirtyModulesOnly`
+
+- Type:
+
+```ts
+type lintDirtyModulesOnly = boolean;
+```
+
+- Default: `false`
+
+Lint only changed files, skip lint on start.
+
+### `threads`
+
+- Type:
+
+```ts
+type threads = boolean | number;
+```
+
+- Default: `false`
+
+Will run lint tasks across a thread pool. The pool size is automatic unless you specify a number.
+
+### Errors and Warning
+
+**By default the plugin will auto adjust error reporting depending on eslint errors/warnings counts.**
+You can still force this behavior by using `emitError` **or** `emitWarning` options:
+
+#### `emitError`
+
+- Type:
+
+```ts
+type emitError = boolean;
+```
+
+- Default: `true`
+
+The errors found will always be emitted, to disable set to `false`.
+
+#### `emitWarning`
+
+- Type:
+
+```ts
+type emitWarning = boolean;
+```
+
+- Default: `true`
+
+The warnings found will always be emitted, to disable set to `false`.
+
+#### `failOnError`
+
+- Type:
+
+```ts
+type failOnError = boolean;
+```
+
+- Default: `true`
+
+Will cause the module build to fail if there are any errors, to disable set to `false`.
+
+#### `failOnWarning`
+
+- Type:
+
+```ts
+type failOnWarning = boolean;
+```
+
+- Default: `false`
+
+Will cause the module build to fail if there are any warnings, if set to `true`.
+
+#### `quiet`
+
+- Type:
+
+```ts
+type quiet = boolean;
+```
+
+- Default: `false`
+
+Will process and report errors only and ignore warnings, if set to `true`.
+
+#### `outputReport`
+
+- Type:
+
+```ts
+type outputReport =
+  | boolean
+  | {
+      filePath?: string | undefined;
+      formatter?:
+        | (
+            | string
+            | ((
+                results: Array<import('eslint').ESLint.LintResult>,
+                data?: import('eslint').ESLint.LintResultData | undefined
+              ) => string)
+          )
+        | undefined;
+    };
+```
+
+- Default: `false`
+
+Write the output of the errors to a file, for example a checkstyle xml file for use for reporting on Jenkins CI.
+
+The `filePath` is an absolute path or relative to the webpack config: `output.path`.
+You can pass in a different `formatter` for the output file,
+if none is passed in the default/configured formatter will be used.
+
+## Changelog
+
+[Changelog](CHANGELOG.md)
+
+## License
+
+[MIT](./LICENSE)
+
+[npm]: https://img.shields.io/npm/v/eslint-webpack-plugin.svg
+[npm-url]: https://npmjs.com/package/eslint-webpack-plugin
+[node]: https://img.shields.io/node/v/eslint-webpack-plugin.svg
+[node-url]: https://nodejs.org
+[tests]: https://github.com/webpack-contrib/eslint-webpack-plugin/workflows/eslint-webpack-plugin/badge.svg
+[tests-url]: https://github.com/webpack-contrib/eslint-webpack-plugin/actions
+[cover]: https://codecov.io/gh/webpack-contrib/eslint-webpack-plugin/branch/master/graph/badge.svg
+[cover-url]: https://codecov.io/gh/webpack-contrib/eslint-webpack-plugin
+[chat]: https://badges.gitter.im/webpack/webpack.svg
+[chat-url]: https://gitter.im/webpack/webpack
+[size]: https://packagephobia.now.sh/badge?p=eslint-webpack-plugin
+[size-url]: https://packagephobia.now.sh/result?p=eslint-webpack-plugin
