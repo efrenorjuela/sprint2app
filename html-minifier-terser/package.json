@@ -1,53 +1,143 @@
 {
-  "_from": "@types/html-minifier-terser@^6.0.0",
-  "_id": "@types/html-minifier-terser@6.1.0",
+  "_from": "html-minifier-terser@^6.0.2",
+  "_id": "html-minifier-terser@6.1.0",
   "_inBundle": false,
-  "_integrity": "sha512-oh/6byDPnL1zeNXFrDXFLyZjkr1MsBG667IM792caf1L2UPOOMf65NFzjUH/ltyfwjAGfs1rsX1eftK0jC/KIg==",
-  "_location": "/@types/html-minifier-terser",
+  "_integrity": "sha512-YXxSlJBZTP7RS3tWnQw74ooKa6L9b9i9QYXY21eUEvhZ3u9XLfv6OnFsQq6RxkhHygsaUMvYsZRV5rU/OVNZxw==",
+  "_location": "/html-minifier-terser",
   "_phantomChildren": {},
   "_requested": {
     "type": "range",
     "registry": true,
-    "raw": "@types/html-minifier-terser@^6.0.0",
-    "name": "@types/html-minifier-terser",
-    "escapedName": "@types%2fhtml-minifier-terser",
-    "scope": "@types",
-    "rawSpec": "^6.0.0",
+    "raw": "html-minifier-terser@^6.0.2",
+    "name": "html-minifier-terser",
+    "escapedName": "html-minifier-terser",
+    "rawSpec": "^6.0.2",
     "saveSpec": null,
-    "fetchSpec": "^6.0.0"
+    "fetchSpec": "^6.0.2"
   },
   "_requiredBy": [
     "/html-webpack-plugin"
   ],
-  "_resolved": "https://registry.npmjs.org/@types/html-minifier-terser/-/html-minifier-terser-6.1.0.tgz",
-  "_shasum": "4fc33a00c1d0c16987b1a20cf92d20614c55ac35",
-  "_spec": "@types/html-minifier-terser@^6.0.0",
+  "_resolved": "https://registry.npmjs.org/html-minifier-terser/-/html-minifier-terser-6.1.0.tgz",
+  "_shasum": "bfc818934cc07918f6b3669f5774ecdfd48f32ab",
+  "_spec": "html-minifier-terser@^6.0.2",
   "_where": "D:\\myapp\\node_modules\\html-webpack-plugin",
+  "author": {
+    "name": "Daniel Ruf"
+  },
+  "benchmarkDependencies": {
+    "chalk": "^2.4.2",
+    "cli-table3": "^0.5.1",
+    "iltorb": "^2.4.4",
+    "lzma": "^2.3.2",
+    "minimize": "^2.2.0",
+    "progress": "^2.0.3"
+  },
+  "bin": {
+    "html-minifier-terser": "cli.js"
+  },
   "bugs": {
-    "url": "https://github.com/DefinitelyTyped/DefinitelyTyped/issues"
+    "url": "https://github.com/terser/html-minifier-terser/issues"
   },
   "bundleDependencies": false,
   "contributors": [
     {
-      "name": "Piotr Błażejewicz",
-      "url": "https://github.com/peterblazejewicz"
+      "name": "Gilmore Davidson",
+      "url": "https://github.com/gilmoreorless"
+    },
+    {
+      "name": "Hugo Wetterberg",
+      "email": "hugo@wetterberg.nu"
+    },
+    {
+      "name": "Zoltan Frombach",
+      "email": "tssajo@gmail.com"
     }
   ],
-  "dependencies": {},
+  "dependencies": {
+    "camel-case": "^4.1.2",
+    "clean-css": "^5.2.2",
+    "commander": "^8.3.0",
+    "he": "^1.2.0",
+    "param-case": "^3.0.4",
+    "relateurl": "^0.2.7",
+    "terser": "^5.10.0"
+  },
   "deprecated": false,
-  "description": "TypeScript definitions for html-minifier-terser",
-  "homepage": "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/html-minifier-terser",
+  "description": "Highly configurable, well-tested, JavaScript-based HTML minifier.",
+  "devDependencies": {
+    "grunt": "^1.4.1",
+    "grunt-browserify": "^6.0.0",
+    "grunt-eslint": "^24.0.0",
+    "grunt-terser": "^2.0.0",
+    "husky": "^7.0.4",
+    "is-ci": "^3.0.1",
+    "lint-staged": "^12.1.2",
+    "node-qunit-puppeteer": "^2.1.0",
+    "qunit": "2.16.0",
+    "serve": "^13.0.2"
+  },
+  "engines": {
+    "node": ">=12"
+  },
+  "files": [
+    "src/*.js",
+    "cli.js",
+    "sample-cli-config-file.conf"
+  ],
+  "homepage": "https://terser.org/html-minifier-terser/",
+  "keywords": [
+    "cli",
+    "compress",
+    "compressor",
+    "css",
+    "html",
+    "htmlmin",
+    "javascript",
+    "min",
+    "minification",
+    "minifier",
+    "minify",
+    "optimize",
+    "optimizer",
+    "pack",
+    "packer",
+    "parse",
+    "parser",
+    "terser",
+    "uglifier",
+    "uglify"
+  ],
   "license": "MIT",
-  "main": "",
-  "name": "@types/html-minifier-terser",
+  "main": "src/htmlminifier.js",
+  "maintainers": [
+    {
+      "name": "Daniel Ruf"
+    },
+    {
+      "name": "Alex Lam",
+      "email": "alexlamsl@gmail.com"
+    },
+    {
+      "name": "Juriy Zaytsev",
+      "email": "kangax@gmail.com",
+      "url": "http://perfectionkills.com/"
+    },
+    {
+      "name": "Sibiraj",
+      "email": "sibiraj.dev"
+    }
+  ],
+  "name": "html-minifier-terser",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/DefinitelyTyped/DefinitelyTyped.git",
-    "directory": "types/html-minifier-terser"
+    "url": "git+https://github.com/terser/html-minifier-terser.git"
   },
-  "scripts": {},
-  "typeScriptVersion": "3.8",
-  "types": "index.d.ts",
-  "typesPublisherContentHash": "e851f65ded989d19a70b471ff32b156ed08fec7ed641ce4c5a7fdee809bd53e2",
+  "scripts": {
+    "dist": "grunt dist",
+    "prepare": "is-ci || husky install",
+    "serve": "npm run dist && serve . -p 6753",
+    "test": "grunt test"
+  },
   "version": "6.1.0"
 }
