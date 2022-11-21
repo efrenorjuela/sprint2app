@@ -3,7 +3,7 @@
   "_id": "color-name@1.1.4",
   "_inBundle": false,
   "_integrity": "sha512-dOy+3AuW3a2wNbZHIuMZpTcgjGuLU/uBL/ubcZF9OXbDo8ff4O8yVp5Bf0efS8uEoYo5q4Fx7dY9OgQGXgAsQA==",
-  "_location": "/@testing-library/jest-dom/color-name",
+  "_location": "/@types/jest/color-name",
   "_phantomChildren": {},
   "_requested": {
     "type": "range",
@@ -16,12 +16,12 @@
     "fetchSpec": "~1.1.4"
   },
   "_requiredBy": [
-    "/@testing-library/jest-dom/color-convert"
+    "/@types/jest/color-convert"
   ],
   "_resolved": "https://registry.npmjs.org/color-name/-/color-name-1.1.4.tgz",
   "_shasum": "c2a09a87acbde69543de6f63fa3995c826c536a2",
   "_spec": "color-name@~1.1.4",
-  "_where": "D:\\myapp\\node_modules\\@testing-library\\jest-dom\\node_modules\\color-convert",
+  "_where": "D:\\myapp\\node_modules\\@types\\jest\\node_modules\\color-convert",
   "author": {
     "name": "DY",
     "email": "dfcreative@gmail.com"
