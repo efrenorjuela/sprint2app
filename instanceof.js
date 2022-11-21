@@ -1,6 +1,8 @@
+var _Symbol = require("@babel/runtime-corejs3/core-js/symbol");
+var _Symbol$hasInstance = require("@babel/runtime-corejs3/core-js/symbol/has-instance");
 function _instanceof(left, right) {
-  if (right != null && typeof Symbol !== "undefined" && right[Symbol.hasInstance]) {
-    return !!right[Symbol.hasInstance](left);
+  if (right != null && typeof _Symbol !== "undefined" && right[_Symbol$hasInstance]) {
+    return !!right[_Symbol$hasInstance](left);
   } else {
     return left instanceof right;
   }

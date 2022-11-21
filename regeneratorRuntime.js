@@ -1,4 +1,13 @@
 var _typeof = require("./typeof.js")["default"];
+var _Object$defineProperty = require("@babel/runtime-corejs3/core-js/object/define-property");
+var _Symbol = require("@babel/runtime-corejs3/core-js/symbol");
+var _Object$create = require("@babel/runtime-corejs3/core-js/object/create");
+var _Object$getPrototypeOf = require("@babel/runtime-corejs3/core-js/object/get-prototype-of");
+var _forEachInstanceProperty = require("@babel/runtime-corejs3/core-js/instance/for-each");
+var _Object$setPrototypeOf = require("@babel/runtime-corejs3/core-js/object/set-prototype-of");
+var _Promise = require("@babel/runtime-corejs3/core-js/promise");
+var _reverseInstanceProperty = require("@babel/runtime-corejs3/core-js/instance/reverse");
+var _sliceInstanceProperty = require("@babel/runtime-corejs3/core-js/instance/slice");
 function _regeneratorRuntime() {
   "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */
   module.exports = _regeneratorRuntime = function _regeneratorRuntime() {
@@ -7,15 +16,15 @@ function _regeneratorRuntime() {
   var exports = {},
     Op = Object.prototype,
     hasOwn = Op.hasOwnProperty,
-    defineProperty = Object.defineProperty || function (obj, key, desc) {
+    defineProperty = _Object$defineProperty || function (obj, key, desc) {
       obj[key] = desc.value;
     },
-    $Symbol = "function" == typeof Symbol ? Symbol : {},
+    $Symbol = "function" == typeof _Symbol ? _Symbol : {},
     iteratorSymbol = $Symbol.iterator || "@@iterator",
     asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator",
     toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag";
   function define(obj, key, value) {
-    return Object.defineProperty(obj, key, {
+    return _Object$defineProperty(obj, key, {
       value: value,
       enumerable: !0,
       configurable: !0,
@@ -31,7 +40,7 @@ function _regeneratorRuntime() {
   }
   function wrap(innerFn, outerFn, self, tryLocsList) {
     var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator,
-      generator = Object.create(protoGenerator.prototype),
+      generator = _Object$create(protoGenerator.prototype),
       context = new Context(tryLocsList || []);
     return defineProperty(generator, "_invoke", {
       value: makeInvokeMethod(innerFn, self, context)
@@ -59,12 +68,13 @@ function _regeneratorRuntime() {
   define(IteratorPrototype, iteratorSymbol, function () {
     return this;
   });
-  var getProto = Object.getPrototypeOf,
+  var getProto = _Object$getPrototypeOf,
     NativeIteratorPrototype = getProto && getProto(getProto(values([])));
   NativeIteratorPrototype && NativeIteratorPrototype !== Op && hasOwn.call(NativeIteratorPrototype, iteratorSymbol) && (IteratorPrototype = NativeIteratorPrototype);
-  var Gp = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(IteratorPrototype);
+  var Gp = GeneratorFunctionPrototype.prototype = Generator.prototype = _Object$create(IteratorPrototype);
   function defineIteratorMethods(prototype) {
-    ["next", "throw", "return"].forEach(function (method) {
+    var _context;
+    _forEachInstanceProperty(_context = ["next", "throw", "return"]).call(_context, function (method) {
       define(prototype, method, function (arg) {
         return this._invoke(method, arg);
       });
@@ -161,7 +171,7 @@ function _regeneratorRuntime() {
   function Context(tryLocsList) {
     this.tryEntries = [{
       tryLoc: "root"
-    }], tryLocsList.forEach(pushTryEntry, this), this.reset(!0);
+    }], _forEachInstanceProperty(tryLocsList).call(tryLocsList, pushTryEntry, this), this.reset(!0);
   }
   function values(iterable) {
     if (iterable) {
@@ -199,7 +209,7 @@ function _regeneratorRuntime() {
     var ctor = "function" == typeof genFun && genFun.constructor;
     return !!ctor && (ctor === GeneratorFunction || "GeneratorFunction" === (ctor.displayName || ctor.name));
   }, exports.mark = function (genFun) {
-    return Object.setPrototypeOf ? Object.setPrototypeOf(genFun, GeneratorFunctionPrototype) : (genFun.__proto__ = GeneratorFunctionPrototype, define(genFun, toStringTagSymbol, "GeneratorFunction")), genFun.prototype = Object.create(Gp), genFun;
+    return _Object$setPrototypeOf ? _Object$setPrototypeOf(genFun, GeneratorFunctionPrototype) : (genFun.__proto__ = GeneratorFunctionPrototype, define(genFun, toStringTagSymbol, "GeneratorFunction")), genFun.prototype = _Object$create(Gp), genFun;
   }, exports.awrap = function (arg) {
     return {
       __await: arg
@@ -207,7 +217,7 @@ function _regeneratorRuntime() {
   }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, asyncIteratorSymbol, function () {
     return this;
   }), exports.AsyncIterator = AsyncIterator, exports.async = function (innerFn, outerFn, self, tryLocsList, PromiseImpl) {
-    void 0 === PromiseImpl && (PromiseImpl = Promise);
+    void 0 === PromiseImpl && (PromiseImpl = _Promise);
     var iter = new AsyncIterator(wrap(innerFn, outerFn, self, tryLocsList), PromiseImpl);
     return exports.isGeneratorFunction(outerFn) ? iter : iter.next().then(function (result) {
       return result.done ? result.value : iter.next();
@@ -222,7 +232,7 @@ function _regeneratorRuntime() {
     for (var key in object) {
       keys.push(key);
     }
-    return keys.reverse(), function next() {
+    return _reverseInstanceProperty(keys).call(keys), function next() {
       for (; keys.length;) {
         var key = keys.pop();
         if (key in object) return next.value = key, next.done = !1, next;
@@ -232,8 +242,9 @@ function _regeneratorRuntime() {
   }, exports.values = values, Context.prototype = {
     constructor: Context,
     reset: function reset(skipTempReset) {
-      if (this.prev = 0, this.next = 0, this.sent = this._sent = undefined, this.done = !1, this.delegate = null, this.method = "next", this.arg = undefined, this.tryEntries.forEach(resetTryEntry), !skipTempReset) for (var name in this) {
-        "t" === name.charAt(0) && hasOwn.call(this, name) && !isNaN(+name.slice(1)) && (this[name] = undefined);
+      var _context2;
+      if (this.prev = 0, this.next = 0, this.sent = this._sent = undefined, this.done = !1, this.delegate = null, this.method = "next", this.arg = undefined, _forEachInstanceProperty(_context2 = this.tryEntries).call(_context2, resetTryEntry), !skipTempReset) for (var name in this) {
+        "t" === name.charAt(0) && hasOwn.call(this, name) && !isNaN(+_sliceInstanceProperty(name).call(name, 1)) && (this[name] = undefined);
       }
     },
     stop: function stop() {

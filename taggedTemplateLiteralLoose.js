@@ -1,6 +1,7 @@
+var _sliceInstanceProperty = require("@babel/runtime-corejs3/core-js/instance/slice");
 function _taggedTemplateLiteralLoose(strings, raw) {
   if (!raw) {
-    raw = strings.slice(0);
+    raw = _sliceInstanceProperty(strings).call(strings, 0);
   }
   strings.raw = raw;
   return strings;

@@ -1,6 +1,8 @@
+var _Symbol = require("@babel/runtime-corejs3/core-js/symbol");
+var _Symbol$for = require("@babel/runtime-corejs3/core-js/symbol/for");
 var REACT_ELEMENT_TYPE;
 function _createRawReactElement(type, props, key, children) {
-  REACT_ELEMENT_TYPE || (REACT_ELEMENT_TYPE = "function" == typeof Symbol && Symbol["for"] && Symbol["for"]("react.element") || 60103);
+  REACT_ELEMENT_TYPE || (REACT_ELEMENT_TYPE = "function" == typeof _Symbol && _Symbol$for && _Symbol$for("react.element") || 60103);
   var defaultProps = type && type.defaultProps,
     childrenLength = arguments.length - 3;
   if (props || 0 === childrenLength || (props = {

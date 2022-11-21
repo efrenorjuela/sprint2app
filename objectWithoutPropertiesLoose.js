@@ -1,11 +1,13 @@
+var _Object$keys = require("@babel/runtime-corejs3/core-js/object/keys");
+var _indexOfInstanceProperty = require("@babel/runtime-corejs3/core-js/instance/index-of");
 function _objectWithoutPropertiesLoose(source, excluded) {
   if (source == null) return {};
   var target = {};
-  var sourceKeys = Object.keys(source);
+  var sourceKeys = _Object$keys(source);
   var key, i;
   for (i = 0; i < sourceKeys.length; i++) {
     key = sourceKeys[i];
-    if (excluded.indexOf(key) >= 0) continue;
+    if (_indexOfInstanceProperty(excluded).call(excluded, key) >= 0) continue;
     target[key] = source[key];
   }
   return target;
