@@ -1,114 +1,150 @@
 {
-  "_from": "@types/yargs@^17.0.8",
-  "_id": "@types/yargs@17.0.13",
+  "_from": "yargs@^16.2.0",
+  "_id": "yargs@16.2.0",
   "_inBundle": false,
-  "_integrity": "sha512-9sWaruZk2JGxIQU+IhI1fhPYRcQ0UuTNuKuCW9bR5fp7qi2Llf7WDzNa17Cy7TKnh3cdxDOiyTu6gaLS0eDatg==",
-  "_location": "/jest-watch-typeahead/@types/yargs",
+  "_integrity": "sha512-D1mvvtDG0L5ft/jGWkLpG1+m0eQxOfaBvTNELraWj22wSVUMWxZUvYgJYcKh6jGGIkJFhH4IZPQhR4TKpc8mBw==",
+  "_location": "/yargs",
   "_phantomChildren": {},
   "_requested": {
     "type": "range",
     "registry": true,
-    "raw": "@types/yargs@^17.0.8",
-    "name": "@types/yargs",
-    "escapedName": "@types%2fyargs",
-    "scope": "@types",
-    "rawSpec": "^17.0.8",
+    "raw": "yargs@^16.2.0",
+    "name": "yargs",
+    "escapedName": "yargs",
+    "rawSpec": "^16.2.0",
     "saveSpec": null,
-    "fetchSpec": "^17.0.8"
+    "fetchSpec": "^16.2.0"
   },
   "_requiredBy": [
-    "/jest-watch-typeahead/@jest/types"
+    "/jest/jest-cli"
   ],
-  "_resolved": "https://registry.npmjs.org/@types/yargs/-/yargs-17.0.13.tgz",
-  "_shasum": "34cced675ca1b1d51fcf4d34c3c6f0fa142a5c76",
-  "_spec": "@types/yargs@^17.0.8",
-  "_where": "D:\\myapp\\node_modules\\jest-watch-typeahead\\node_modules\\@jest\\types",
+  "_resolved": "https://registry.npmjs.org/yargs/-/yargs-16.2.0.tgz",
+  "_shasum": "1c82bf0f6b6a66eafce7ef30e376f49a12477f66",
+  "_spec": "yargs@^16.2.0",
+  "_where": "D:\\myapp\\node_modules\\jest\\node_modules\\jest-cli",
   "bugs": {
-    "url": "https://github.com/DefinitelyTyped/DefinitelyTyped/issues"
+    "url": "https://github.com/yargs/yargs/issues"
   },
   "bundleDependencies": false,
   "contributors": [
     {
-      "name": "Martin Poelstra",
-      "url": "https://github.com/poelstra"
-    },
-    {
-      "name": "Mizunashi Mana",
-      "url": "https://github.com/mizunashi-mana"
-    },
-    {
-      "name": "Jeffery Grajkowski",
-      "url": "https://github.com/pushplay"
-    },
-    {
-      "name": "Jimi",
-      "url": "Dimitris"
-    },
-    {
-      "name": "Steffen Viken Valvåg",
-      "url": "https://github.com/steffenvv"
-    },
-    {
-      "name": "Emily Marigold Klassen",
-      "url": "https://github.com/forivall"
-    },
-    {
-      "name": "ExE Boss",
-      "url": "https://github.com/ExE-Boss"
-    },
-    {
-      "name": "Aankhen",
-      "url": "https://github.com/Aankhen"
-    },
-    {
-      "name": "Ben Coe",
-      "url": "https://github.com/bcoe"
+      "name": "Yargs Contributors",
+      "url": "https://github.com/yargs/yargs/graphs/contributors"
     }
   ],
   "dependencies": {
-    "@types/yargs-parser": "*"
+    "cliui": "^7.0.2",
+    "escalade": "^3.1.1",
+    "get-caller-file": "^2.0.5",
+    "require-directory": "^2.1.1",
+    "string-width": "^4.2.0",
+    "y18n": "^5.0.5",
+    "yargs-parser": "^20.2.2"
   },
   "deprecated": false,
-  "description": "TypeScript definitions for yargs",
-  "exports": {
-    ".": {
-      "types": {
-        "import": "./index.d.mts",
-        "default": "./index.d.ts"
-      }
-    },
-    "./helpers": {
-      "types": {
-        "import": "./helpers.d.mts",
-        "default": "./helpers.d.ts"
-      }
-    },
-    "./yargs": {
-      "types": {
-        "default": "./yargs.d.ts"
-      }
-    },
-    "./package.json": "./package.json"
+  "description": "yargs the modern, pirate-themed, successor to optimist.",
+  "devDependencies": {
+    "@types/chai": "^4.2.11",
+    "@types/mocha": "^8.0.0",
+    "@types/node": "^14.11.2",
+    "@wessberg/rollup-plugin-ts": "^1.3.2",
+    "c8": "^7.0.0",
+    "chai": "^4.2.0",
+    "chalk": "^4.0.0",
+    "coveralls": "^3.0.9",
+    "cpr": "^3.0.1",
+    "cross-env": "^7.0.2",
+    "cross-spawn": "^7.0.0",
+    "gts": "^3.0.0",
+    "hashish": "0.0.4",
+    "mocha": "^8.0.0",
+    "rimraf": "^3.0.2",
+    "rollup": "^2.23.0",
+    "rollup-plugin-cleanup": "^3.1.1",
+    "standardx": "^5.0.0",
+    "typescript": "^4.0.2",
+    "which": "^2.0.0",
+    "yargs-test-extends": "^1.0.1"
   },
-  "homepage": "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/yargs",
+  "engines": {
+    "node": ">=10"
+  },
+  "exports": {
+    "./package.json": "./package.json",
+    ".": [
+      {
+        "import": "./index.mjs",
+        "require": "./index.cjs"
+      },
+      "./index.cjs"
+    ],
+    "./helpers": {
+      "import": "./helpers/helpers.mjs",
+      "require": "./helpers/index.js"
+    },
+    "./yargs": [
+      {
+        "require": "./yargs"
+      },
+      "./yargs"
+    ]
+  },
+  "files": [
+    "browser.mjs",
+    "index.cjs",
+    "helpers/*.js",
+    "helpers/*",
+    "index.mjs",
+    "yargs",
+    "build",
+    "locales",
+    "LICENSE",
+    "lib/platform-shims/*.mjs",
+    "!*.d.ts"
+  ],
+  "homepage": "https://yargs.js.org/",
+  "keywords": [
+    "argument",
+    "args",
+    "option",
+    "parser",
+    "parsing",
+    "cli",
+    "command"
+  ],
   "license": "MIT",
-  "main": "",
-  "name": "@types/yargs",
+  "main": "./index.cjs",
+  "module": "./index.mjs",
+  "name": "yargs",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/DefinitelyTyped/DefinitelyTyped.git",
-    "directory": "types/yargs"
+    "url": "git+https://github.com/yargs/yargs.git"
   },
-  "scripts": {},
-  "typeScriptVersion": "4.1",
-  "types": "index.d.ts",
-  "typesPublisherContentHash": "9016ff10b6e6354147619595a33b71abde9faf7542f46ec8296d7c8d2bd5cc45",
-  "typesVersions": {
-    "<4.2.0-0": {
-      "*": [
-        "ts4.1/*"
-      ]
-    }
+  "scripts": {
+    "build:cjs": "rollup -c rollup.config.cjs",
+    "check": "gts lint && npm run check:js",
+    "check:js": "standardx '**/*.mjs' && standardx '**/*.cjs' && standardx './*.mjs' && standardx './*.cjs'",
+    "clean": "gts clean",
+    "compile": "rimraf build && tsc",
+    "coverage": "c8 report --check-coverage",
+    "fix": "gts fix && npm run fix:js",
+    "fix:js": "standardx --fix '**/*.mjs' && standardx --fix '**/*.cjs' && standardx --fix './*.mjs' && standardx --fix './*.cjs'",
+    "postbuild:cjs": "rimraf ./build/index.cjs.d.ts",
+    "postcompile": "npm run build:cjs",
+    "posttest": "npm run check",
+    "prepare": "npm run compile",
+    "pretest": "npm run compile -- -p tsconfig.test.json && cross-env NODE_ENV=test npm run build:cjs",
+    "test": "c8 mocha ./test/*.cjs --require ./test/before.cjs --timeout=12000 --check-leaks",
+    "test:esm": "c8 mocha ./test/esm/*.mjs --check-leaks"
   },
-  "version": "17.0.13"
+  "standardx": {
+    "ignore": [
+      "build",
+      "helpers",
+      "**/example/**",
+      "**/platform-shims/esm.mjs"
+    ]
+  },
+  "type": "module",
+  "version": "16.2.0"
 }
