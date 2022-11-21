@@ -1,101 +1,112 @@
 {
-  "_from": "@babel/types@^7.20.2",
-  "_id": "@babel/types@7.20.2",
+  "_from": "@types/react-dom@^18.0.0",
+  "_id": "@types/react-dom@18.0.9",
   "_inBundle": false,
-  "_integrity": "sha512-FnnvsNWgZCr232sqtXggapvlkk/tuwR/qhGzcmxI0GXLCjmPYQPzio2FbdlWuY6y1sHFfQKk+rRbUZ9VStQMog==",
-  "_location": "/@babel/types",
+  "_integrity": "sha512-qnVvHxASt/H7i+XG1U1xMiY5t+IHcPGUK7TDMDzom08xa7e86eCeKOiLZezwCKVxJn6NEiiy2ekgX8aQssjIKg==",
+  "_location": "/@types/react-dom",
   "_phantomChildren": {},
   "_requested": {
     "type": "range",
     "registry": true,
-    "raw": "@babel/types@^7.20.2",
-    "name": "@babel/types",
-    "escapedName": "@babel%2ftypes",
-    "scope": "@babel",
-    "rawSpec": "^7.20.2",
+    "raw": "@types/react-dom@^18.0.0",
+    "name": "@types/react-dom",
+    "escapedName": "@types%2freact-dom",
+    "scope": "@types",
+    "rawSpec": "^18.0.0",
     "saveSpec": null,
-    "fetchSpec": "^7.20.2"
+    "fetchSpec": "^18.0.0"
   },
   "_requiredBy": [
-    "/@babel/core",
-    "/@babel/generator",
-    "/@babel/helper-annotate-as-pure",
-    "/@babel/helper-builder-binary-assignment-operator-visitor",
-    "/@babel/helper-explode-assignable-expression",
-    "/@babel/helper-function-name",
-    "/@babel/helper-hoist-variables",
-    "/@babel/helper-member-expression-to-functions",
-    "/@babel/helper-module-imports",
-    "/@babel/helper-module-transforms",
-    "/@babel/helper-optimise-call-expression",
-    "/@babel/helper-remap-async-to-generator",
-    "/@babel/helper-replace-supers",
-    "/@babel/helper-simple-access",
-    "/@babel/helper-skip-transparent-expression-wrappers",
-    "/@babel/helper-split-export-declaration",
-    "/@babel/helper-wrap-function",
-    "/@babel/helpers",
-    "/@babel/plugin-transform-react-jsx",
-    "/@babel/preset-env",
-    "/@babel/preset-modules",
-    "/@babel/template",
-    "/@babel/traverse",
-    "/@svgr/hast-util-to-babel-ast",
-    "/@types/babel__core",
-    "/@types/babel__generator",
-    "/@types/babel__template",
-    "/@types/babel__traverse",
-    "/babel-plugin-jest-hoist",
-    "/jest-snapshot"
+    "/@testing-library/react"
   ],
-  "_resolved": "https://registry.npmjs.org/@babel/types/-/types-7.20.2.tgz",
-  "_shasum": "67ac09266606190f496322dbaff360fdaa5e7842",
-  "_spec": "@babel/types@^7.20.2",
-  "_where": "D:\\myapp\\node_modules\\@babel\\core",
-  "author": {
-    "name": "The Babel Team",
-    "url": "https://babel.dev/team"
-  },
+  "_resolved": "https://registry.npmjs.org/@types/react-dom/-/react-dom-18.0.9.tgz",
+  "_shasum": "ffee5e4bfc2a2f8774b15496474f8e7fe8d0b504",
+  "_spec": "@types/react-dom@^18.0.0",
+  "_where": "D:\\myapp\\node_modules\\@testing-library\\react",
   "bugs": {
-    "url": "https://github.com/babel/babel/issues?utf8=%E2%9C%93&q=is%3Aissue+label%3A%22pkg%3A%20types%22+is%3Aopen"
+    "url": "https://github.com/DefinitelyTyped/DefinitelyTyped/issues"
   },
   "bundleDependencies": false,
+  "contributors": [
+    {
+      "name": "Asana",
+      "url": "https://asana.com"
+    },
+    {
+      "name": "AssureSign",
+      "url": "http://www.assuresign.com"
+    },
+    {
+      "name": "Microsoft",
+      "url": "https://microsoft.com"
+    },
+    {
+      "name": "MartynasZilinskas",
+      "url": "https://github.com/MartynasZilinskas"
+    },
+    {
+      "name": "Josh Rutherford",
+      "url": "https://github.com/theruther4d"
+    },
+    {
+      "name": "Jessica Franco",
+      "url": "https://github.com/Jessidhia"
+    },
+    {
+      "name": "Sebastian Silbermann",
+      "url": "https://github.com/eps1lon"
+    }
+  ],
   "dependencies": {
-    "@babel/helper-string-parser": "^7.19.4",
-    "@babel/helper-validator-identifier": "^7.19.1",
-    "to-fast-properties": "^2.0.0"
+    "@types/react": "*"
   },
   "deprecated": false,
-  "description": "Babel Types is a Lodash-esque utility library for AST nodes",
-  "devDependencies": {
-    "@babel/generator": "^7.20.2",
-    "@babel/parser": "^7.20.2",
-    "chalk": "^4.1.0",
-    "glob": "^7.2.0"
+  "description": "TypeScript definitions for React (react-dom)",
+  "exports": {
+    ".": {
+      "types": {
+        "default": "./index.d.ts"
+      }
+    },
+    "./client": {
+      "types": {
+        "default": "./client.d.ts"
+      }
+    },
+    "./next": {
+      "types": {
+        "default": "./next.d.ts"
+      }
+    },
+    "./server": {
+      "types": {
+        "default": "./server.d.ts"
+      }
+    },
+    "./experimental": {
+      "types": {
+        "default": "./experimental.d.ts"
+      }
+    },
+    "./test-utils": {
+      "types": {
+        "default": "./test-utils/index.d.ts"
+      }
+    },
+    "./package.json": "./package.json"
   },
-  "engines": {
-    "node": ">=6.9.0"
-  },
-  "homepage": "https://babel.dev/docs/en/next/babel-types",
+  "homepage": "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/react-dom",
   "license": "MIT",
-  "main": "./lib/index.js",
-  "name": "@babel/types",
-  "publishConfig": {
-    "access": "public"
-  },
+  "main": "",
+  "name": "@types/react-dom",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/babel/babel.git",
-    "directory": "packages/babel-types"
+    "url": "git+https://github.com/DefinitelyTyped/DefinitelyTyped.git",
+    "directory": "types/react-dom"
   },
-  "type": "commonjs",
-  "types": "./lib/index-legacy.d.ts",
-  "typesVersions": {
-    ">=3.7": {
-      "lib/index-legacy.d.ts": [
-        "lib/index.d.ts"
-      ]
-    }
-  },
-  "version": "7.20.2"
+  "scripts": {},
+  "typeScriptVersion": "4.1",
+  "types": "index.d.ts",
+  "typesPublisherContentHash": "cd6b929df8ab56cee31a0dbc7754005b8e59121ffc6cb470717c0feff49d2ece",
+  "version": "18.0.9"
 }

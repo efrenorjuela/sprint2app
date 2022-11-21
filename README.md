@@ -1,19 +1,16 @@
-# @babel/types
+# Installation
+> `npm install --save @types/react-dom`
 
-> Babel Types is a Lodash-esque utility library for AST nodes
+# Summary
+This package contains type definitions for React (react-dom) (https://reactjs.org).
 
-See our website [@babel/types](https://babeljs.io/docs/en/babel-types) for more information or the [issues](https://github.com/babel/babel/issues?utf8=%E2%9C%93&q=is%3Aissue+label%3A%22pkg%3A%20types%22+is%3Aopen) associated with this package.
+# Details
+Files were exported from https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/react-dom.
 
-## Install
+### Additional Details
+ * Last updated: Mon, 14 Nov 2022 19:02:54 GMT
+ * Dependencies: [@types/react](https://npmjs.com/package/@types/react)
+ * Global values: `ReactDOM`, `ReactDOMServer`
 
-Using npm:
-
-```sh
-npm install --save-dev @babel/types
-```
-
-or using yarn:
-
-```sh
-yarn add @babel/types --dev
-```
+# Credits
+These definitions were written by [Asana](https://asana.com), [AssureSign](http://www.assuresign.com), [Microsoft](https://microsoft.com), [MartynasZilinskas](https://github.com/MartynasZilinskas), [Josh Rutherford](https://github.com/theruther4d), [Jessica Franco](https://github.com/Jessidhia), and [Sebastian Silbermann](https://github.com/eps1lon).
