@@ -1,9 +1,13 @@
+import _Symbol from "@babel/runtime-corejs3/core-js/symbol";
+import _Symbol$asyncIterator from "@babel/runtime-corejs3/core-js/symbol/async-iterator";
+import _Symbol$iterator from "@babel/runtime-corejs3/core-js/symbol/iterator";
+import _Promise from "@babel/runtime-corejs3/core-js/promise";
 export default function _asyncIterator(iterable) {
   var method,
     async,
     sync,
     retry = 2;
-  for ("undefined" != typeof Symbol && (async = Symbol.asyncIterator, sync = Symbol.iterator); retry--;) {
+  for ("undefined" != typeof _Symbol && (async = _Symbol$asyncIterator, sync = _Symbol$iterator); retry--;) {
     if (async && null != (method = iterable[async])) return method.call(iterable);
     if (sync && null != (method = iterable[sync])) return new AsyncFromSyncIterator(method.call(iterable));
     async = "@@asyncIterator", sync = "@@iterator";
@@ -12,9 +16,9 @@ export default function _asyncIterator(iterable) {
 }
 function AsyncFromSyncIterator(s) {
   function AsyncFromSyncIteratorContinuation(r) {
-    if (Object(r) !== r) return Promise.reject(new TypeError(r + " is not an object."));
+    if (Object(r) !== r) return _Promise.reject(new TypeError(r + " is not an object."));
     var done = r.done;
-    return Promise.resolve(r.value).then(function (value) {
+    return _Promise.resolve(r.value).then(function (value) {
       return {
         value: value,
         done: done
@@ -31,14 +35,14 @@ function AsyncFromSyncIterator(s) {
     },
     "return": function _return(value) {
       var ret = this.s["return"];
-      return void 0 === ret ? Promise.resolve({
+      return void 0 === ret ? _Promise.resolve({
         value: value,
         done: !0
       }) : AsyncFromSyncIteratorContinuation(ret.apply(this.s, arguments));
     },
     "throw": function _throw(value) {
       var thr = this.s["return"];
-      return void 0 === thr ? Promise.reject(value) : AsyncFromSyncIteratorContinuation(thr.apply(this.s, arguments));
+      return void 0 === thr ? _Promise.reject(value) : AsyncFromSyncIteratorContinuation(thr.apply(this.s, arguments));
     }
   }, new AsyncFromSyncIterator(s);
 }

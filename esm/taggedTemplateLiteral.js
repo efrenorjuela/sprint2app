@@ -1,10 +1,13 @@
+import _sliceInstanceProperty from "@babel/runtime-corejs3/core-js/instance/slice";
+import _Object$freeze from "@babel/runtime-corejs3/core-js/object/freeze";
+import _Object$defineProperties from "@babel/runtime-corejs3/core-js/object/define-properties";
 export default function _taggedTemplateLiteral(strings, raw) {
   if (!raw) {
-    raw = strings.slice(0);
+    raw = _sliceInstanceProperty(strings).call(strings, 0);
   }
-  return Object.freeze(Object.defineProperties(strings, {
+  return _Object$freeze(_Object$defineProperties(strings, {
     raw: {
-      value: Object.freeze(raw)
+      value: _Object$freeze(raw)
     }
   }));
 }

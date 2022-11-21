@@ -1,4 +1,8 @@
 import _typeof from "./typeof.js";
+import _Object$getOwnPropertyDescriptor from "@babel/runtime-corejs3/core-js/object/get-own-property-descriptor";
+import _Object$defineProperty from "@babel/runtime-corejs3/core-js/object/define-property";
+import _Map from "@babel/runtime-corejs3/core-js/map";
+import _Array$isArray from "@babel/runtime-corejs3/core-js/array/is-array";
 function createAddInitializerMethod(initializers, decoratorFinishedRef) {
   return function (initializer) {
     assertNotFinished(decoratorFinishedRef, "addInitializer"), assertCallable(initializer, "An initializer"), initializers.push(initializer);
@@ -90,7 +94,7 @@ function applyMemberDec(ret, base, decInfo, name, kind, isStatic, isPrivate, ini
     set: decInfo[3]
   } : {
     value: decInfo[3]
-  } : 0 !== kind && (desc = Object.getOwnPropertyDescriptor(base, name)), 1 === kind ? value = {
+  } : 0 !== kind && (desc = _Object$getOwnPropertyDescriptor(base, name)), 1 === kind ? value = {
     get: desc.get,
     set: desc.set
   } : 2 === kind ? value = desc.value : 3 === kind ? value = desc.get : 4 === kind && (value = desc.set), "function" == typeof decs) void 0 !== (newValue = memberDec(decs, name, desc, initializers, kind, isStatic, isPrivate, value)) && (assertValidReturnValue(kind, newValue), 0 === kind ? init = newValue : 1 === kind ? (init = newValue.init, get = newValue.get || value.get, set = newValue.set || value.set, value = {
@@ -128,12 +132,12 @@ function applyMemberDec(ret, base, decInfo, name, kind, isStatic, isPrivate, ini
     return value.set.call(instance, args);
   })) : 2 === kind ? ret.push(value) : ret.push(function (instance, args) {
     return value.call(instance, args);
-  }) : Object.defineProperty(base, name, desc));
+  }) : _Object$defineProperty(base, name, desc));
 }
 function applyMemberDecs(ret, Class, decInfos) {
-  for (var protoInitializers, staticInitializers, existingProtoNonFields = new Map(), existingStaticNonFields = new Map(), i = 0; i < decInfos.length; i++) {
+  for (var protoInitializers, staticInitializers, existingProtoNonFields = new _Map(), existingStaticNonFields = new _Map(), i = 0; i < decInfos.length; i++) {
     var decInfo = decInfos[i];
-    if (Array.isArray(decInfo)) {
+    if (_Array$isArray(decInfo)) {
       var base,
         initializers,
         kind = decInfo[1],

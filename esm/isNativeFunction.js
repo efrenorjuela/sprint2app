@@ -1,3 +1,5 @@
+import _indexOfInstanceProperty from "@babel/runtime-corejs3/core-js/instance/index-of";
 export default function _isNativeFunction(fn) {
-  return Function.toString.call(fn).indexOf("[native code]") !== -1;
+  var _context;
+  return _indexOfInstanceProperty(_context = Function.toString.call(fn)).call(_context, "[native code]") !== -1;
 }

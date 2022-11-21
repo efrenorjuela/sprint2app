@@ -1,5 +1,7 @@
+import _Symbol from "@babel/runtime-corejs3/core-js/symbol";
+import _getIteratorMethod from "@babel/runtime-corejs3/core-js/get-iterator-method";
 export default function _iterableToArrayLimit(arr, i) {
-  var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"];
+  var _i = arr == null ? null : typeof _Symbol !== "undefined" && _getIteratorMethod(arr) || arr["@@iterator"];
   if (_i == null) return;
   var _arr = [];
   var _n = true;

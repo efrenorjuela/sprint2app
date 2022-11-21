@@ -1,16 +1,19 @@
+var _Promise = require("@babel/runtime-corejs3/core-js/promise");
+var _Symbol = require("@babel/runtime-corejs3/core-js/symbol");
+var _Symbol$iterator = require("@babel/runtime-corejs3/core-js/symbol/iterator");
 var OverloadYield = require("./OverloadYield.js");
 function _asyncGeneratorDelegate(inner) {
   var iter = {},
     waiting = !1;
   function pump(key, value) {
-    return waiting = !0, value = new Promise(function (resolve) {
+    return waiting = !0, value = new _Promise(function (resolve) {
       resolve(inner[key](value));
     }), {
       done: !1,
       value: new OverloadYield(value, 1)
     };
   }
-  return iter["undefined" != typeof Symbol && Symbol.iterator || "@@iterator"] = function () {
+  return iter["undefined" != typeof _Symbol && _Symbol$iterator || "@@iterator"] = function () {
     return this;
   }, iter.next = function (value) {
     return waiting ? (waiting = !1, value) : pump("next", value);

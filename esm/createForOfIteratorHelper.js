@@ -1,8 +1,11 @@
+import _Symbol from "@babel/runtime-corejs3/core-js/symbol";
+import _getIteratorMethod from "@babel/runtime-corejs3/core-js/get-iterator-method";
+import _Array$isArray from "@babel/runtime-corejs3/core-js/array/is-array";
 import unsupportedIterableToArray from "./unsupportedIterableToArray.js";
 export default function _createForOfIteratorHelper(o, allowArrayLike) {
-  var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"];
+  var it = typeof _Symbol !== "undefined" && _getIteratorMethod(o) || o["@@iterator"];
   if (!it) {
-    if (Array.isArray(o) || (it = unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") {
+    if (_Array$isArray(o) || (it = unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") {
       if (it) o = it;
       var i = 0;
       var F = function F() {};

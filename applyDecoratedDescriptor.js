@@ -1,6 +1,13 @@
+var _forEachInstanceProperty = require("@babel/runtime-corejs3/core-js/instance/for-each");
+var _Object$keys = require("@babel/runtime-corejs3/core-js/object/keys");
+var _reduceInstanceProperty = require("@babel/runtime-corejs3/core-js/instance/reduce");
+var _reverseInstanceProperty = require("@babel/runtime-corejs3/core-js/instance/reverse");
+var _sliceInstanceProperty = require("@babel/runtime-corejs3/core-js/instance/slice");
+var _Object$defineProperty = require("@babel/runtime-corejs3/core-js/object/define-property");
 function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
+  var _context, _context2, _context3;
   var desc = {};
-  Object.keys(descriptor).forEach(function (key) {
+  _forEachInstanceProperty(_context = _Object$keys(descriptor)).call(_context, function (key) {
     desc[key] = descriptor[key];
   });
   desc.enumerable = !!desc.enumerable;
@@ -8,7 +15,7 @@ function _applyDecoratedDescriptor(target, property, decorators, descriptor, con
   if ('value' in desc || desc.initializer) {
     desc.writable = true;
   }
-  desc = decorators.slice().reverse().reduce(function (desc, decorator) {
+  desc = _reduceInstanceProperty(_context2 = _reverseInstanceProperty(_context3 = _sliceInstanceProperty(decorators).call(decorators)).call(_context3)).call(_context2, function (desc, decorator) {
     return decorator(target, property, desc) || desc;
   }, desc);
   if (context && desc.initializer !== void 0) {
@@ -16,7 +23,7 @@ function _applyDecoratedDescriptor(target, property, decorators, descriptor, con
     desc.initializer = undefined;
   }
   if (desc.initializer === void 0) {
-    Object.defineProperty(target, property, desc);
+    _Object$defineProperty(target, property, desc);
     desc = null;
   }
   return desc;

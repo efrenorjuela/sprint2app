@@ -1,3 +1,4 @@
+import _Reflect$construct from "@babel/runtime-corejs3/core-js/reflect/construct";
 import getPrototypeOf from "./getPrototypeOf.js";
 import isNativeReflectConstruct from "./isNativeReflectConstruct.js";
 import possibleConstructorReturn from "./possibleConstructorReturn.js";
@@ -8,7 +9,7 @@ export default function _createSuper(Derived) {
       result;
     if (hasNativeReflectConstruct) {
       var NewTarget = getPrototypeOf(this).constructor;
-      result = Reflect.construct(Super, arguments, NewTarget);
+      result = _Reflect$construct(Super, arguments, NewTarget);
     } else {
       result = Super.apply(this, arguments);
     }

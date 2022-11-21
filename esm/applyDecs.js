@@ -1,4 +1,16 @@
 import _typeof from "./typeof.js";
+import _Map from "@babel/runtime-corejs3/core-js/map";
+import _Symbol from "@babel/runtime-corejs3/core-js/symbol";
+import _Symbol$for from "@babel/runtime-corejs3/core-js/symbol/for";
+import _Object$getOwnPropertySymbols from "@babel/runtime-corejs3/core-js/object/get-own-property-symbols";
+import _Object$setPrototypeOf from "@babel/runtime-corejs3/core-js/object/set-prototype-of";
+import _Array$from from "@babel/runtime-corejs3/core-js/array/from";
+import _valuesInstanceProperty from "@babel/runtime-corejs3/core-js/instance/values";
+import _concatInstanceProperty from "@babel/runtime-corejs3/core-js/instance/concat";
+import _Object$assign from "@babel/runtime-corejs3/core-js/object/assign";
+import _Object$getOwnPropertyDescriptor from "@babel/runtime-corejs3/core-js/object/get-own-property-descriptor";
+import _Object$defineProperty from "@babel/runtime-corejs3/core-js/object/define-property";
+import _Array$isArray from "@babel/runtime-corejs3/core-js/array/is-array";
 function old_createMetadataMethodsForProperty(metadataMap, kind, property, decoratorFinishedRef) {
   return {
     getMetadata: function getMetadata(key) {
@@ -20,14 +32,14 @@ function old_createMetadataMethodsForProperty(metadataMap, kind, property, decor
         void 0 === pub && (pub = metadataForKey["public"] = {}), pub[property] = value;
       } else if (2 === kind) {
         var priv = metadataForKey.priv;
-        void 0 === priv && (priv = metadataForKey["private"] = new Map()), priv.set(property, value);
+        void 0 === priv && (priv = metadataForKey["private"] = new _Map()), priv.set(property, value);
       } else metadataForKey.constructor = value;
     }
   };
 }
 function old_convertMetadataMapToFinal(obj, metadataMap) {
-  var parentMetadataMap = obj[Symbol.metadata || Symbol["for"]("Symbol.metadata")],
-    metadataKeys = Object.getOwnPropertySymbols(metadataMap);
+  var parentMetadataMap = obj[_Symbol.metadata || _Symbol$for("Symbol.metadata")],
+    metadataKeys = _Object$getOwnPropertySymbols(metadataMap);
   if (0 !== metadataKeys.length) {
     for (var i = 0; i < metadataKeys.length; i++) {
       var key = metadataKeys[i],
@@ -35,16 +47,16 @@ function old_convertMetadataMapToFinal(obj, metadataMap) {
         parentMetaForKey = parentMetadataMap ? parentMetadataMap[key] : null,
         pub = metaForKey["public"],
         parentPub = parentMetaForKey ? parentMetaForKey["public"] : null;
-      pub && parentPub && Object.setPrototypeOf(pub, parentPub);
+      pub && parentPub && _Object$setPrototypeOf(pub, parentPub);
       var priv = metaForKey["private"];
       if (priv) {
-        var privArr = Array.from(priv.values()),
+        var privArr = _Array$from(_valuesInstanceProperty(priv).call(priv)),
           parentPriv = parentMetaForKey ? parentMetaForKey["private"] : null;
-        parentPriv && (privArr = privArr.concat(parentPriv)), metaForKey["private"] = privArr;
+        parentPriv && (privArr = _concatInstanceProperty(privArr).call(privArr, parentPriv)), metaForKey["private"] = privArr;
       }
-      parentMetaForKey && Object.setPrototypeOf(metaForKey, parentMetaForKey);
+      parentMetaForKey && _Object$setPrototypeOf(metaForKey, parentMetaForKey);
     }
-    parentMetadataMap && Object.setPrototypeOf(metadataMap, parentMetadataMap), obj[Symbol.metadata || Symbol["for"]("Symbol.metadata")] = metadataMap;
+    parentMetadataMap && _Object$setPrototypeOf(metadataMap, parentMetadataMap), obj[_Symbol.metadata || _Symbol$for("Symbol.metadata")] = metadataMap;
   }
 }
 function old_createAddInitializerMethod(initializers, decoratorFinishedRef) {
@@ -82,7 +94,7 @@ function old_memberDec(dec, name, desc, metadataMap, initializers, kind, isStati
       v: !1
     };
   if (0 !== kind && (ctx.addInitializer = old_createAddInitializerMethod(initializers, decoratorFinishedRef)), isPrivate) {
-    metadataKind = 2, metadataName = Symbol(name);
+    metadataKind = 2, metadataName = _Symbol(name);
     var access = {};
     0 === kind ? (access.get = desc.get, access.set = desc.set) : 2 === kind ? access.get = function () {
       return desc.value;
@@ -93,7 +105,7 @@ function old_memberDec(dec, name, desc, metadataMap, initializers, kind, isStati
     })), ctx.access = access;
   } else metadataKind = 1, metadataName = name;
   try {
-    return dec(value, Object.assign(ctx, old_createMetadataMethodsForProperty(metadataMap, metadataKind, metadataName, decoratorFinishedRef)));
+    return dec(value, _Object$assign(ctx, old_createMetadataMethodsForProperty(metadataMap, metadataKind, metadataName, decoratorFinishedRef)));
   } finally {
     decoratorFinishedRef.v = !0;
   }
@@ -138,7 +150,7 @@ function old_applyMemberDec(ret, base, decInfo, name, kind, isStatic, isPrivate,
     set: decInfo[3]
   } : {
     value: decInfo[3]
-  } : 0 !== kind && (desc = Object.getOwnPropertyDescriptor(base, name)), 1 === kind ? value = {
+  } : 0 !== kind && (desc = _Object$getOwnPropertyDescriptor(base, name)), 1 === kind ? value = {
     get: desc.get,
     set: desc.set
   } : 2 === kind ? value = desc.value : 3 === kind ? value = desc.get : 4 === kind && (value = desc.set), "function" == typeof decs) void 0 !== (newValue = old_memberDec(decs, name, desc, metadataMap, initializers, kind, isStatic, isPrivate, value)) && (old_assertValidReturnValue(kind, newValue), 0 === kind ? initializer = newValue : 1 === kind ? (initializer = old_getInit(newValue), get = newValue.get || value.get, set = newValue.set || value.set, value = {
@@ -176,12 +188,12 @@ function old_applyMemberDec(ret, base, decInfo, name, kind, isStatic, isPrivate,
     return value.set.call(instance, args);
   })) : 2 === kind ? ret.push(value) : ret.push(function (instance, args) {
     return value.call(instance, args);
-  }) : Object.defineProperty(base, name, desc));
+  }) : _Object$defineProperty(base, name, desc));
 }
 function old_applyMemberDecs(ret, Class, protoMetadataMap, staticMetadataMap, decInfos) {
-  for (var protoInitializers, staticInitializers, existingProtoNonFields = new Map(), existingStaticNonFields = new Map(), i = 0; i < decInfos.length; i++) {
+  for (var protoInitializers, staticInitializers, existingProtoNonFields = new _Map(), existingStaticNonFields = new _Map(), i = 0; i < decInfos.length; i++) {
     var decInfo = decInfos[i];
-    if (Array.isArray(decInfo)) {
+    if (_Array$isArray(decInfo)) {
       var base,
         metadataMap,
         initializers,
@@ -215,7 +227,7 @@ function old_applyClassDecs(ret, targetClass, metadataMap, classDecs) {
         v: !1
       };
       try {
-        var ctx = Object.assign({
+        var ctx = _Object$assign({
             kind: "class",
             name: name,
             addInitializer: old_createAddInitializerMethod(initializers, decoratorFinishedRef)

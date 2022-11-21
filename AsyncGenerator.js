@@ -1,3 +1,6 @@
+var _Promise = require("@babel/runtime-corejs3/core-js/promise");
+var _Symbol = require("@babel/runtime-corejs3/core-js/symbol");
+var _Symbol$asyncIterator = require("@babel/runtime-corejs3/core-js/symbol/async-iterator");
 var OverloadYield = require("./OverloadYield.js");
 function AsyncGenerator(gen) {
   var front, back;
@@ -6,7 +9,7 @@ function AsyncGenerator(gen) {
       var result = gen[key](arg),
         value = result.value,
         overloaded = value instanceof OverloadYield;
-      Promise.resolve(overloaded ? value.v : value).then(function (arg) {
+      _Promise.resolve(overloaded ? value.v : value).then(function (arg) {
         if (overloaded) {
           var nextKey = "return" === key ? "return" : "next";
           if (!value.k || arg.done) return resume(nextKey, arg);
@@ -40,7 +43,7 @@ function AsyncGenerator(gen) {
     (front = front.next) ? resume(front.key, front.arg) : back = null;
   }
   this._invoke = function (key, arg) {
-    return new Promise(function (resolve, reject) {
+    return new _Promise(function (resolve, reject) {
       var request = {
         key: key,
         arg: arg,
@@ -52,7 +55,7 @@ function AsyncGenerator(gen) {
     });
   }, "function" != typeof gen["return"] && (this["return"] = void 0);
 }
-AsyncGenerator.prototype["function" == typeof Symbol && Symbol.asyncIterator || "@@asyncIterator"] = function () {
+AsyncGenerator.prototype["function" == typeof _Symbol && _Symbol$asyncIterator || "@@asyncIterator"] = function () {
   return this;
 }, AsyncGenerator.prototype.next = function (arg) {
   return this._invoke("next", arg);
