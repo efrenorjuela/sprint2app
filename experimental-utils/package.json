@@ -1,43 +1,38 @@
 {
-  "_from": "@typescript-eslint/parser@^5.5.0",
-  "_id": "@typescript-eslint/parser@5.43.0",
+  "_from": "@typescript-eslint/experimental-utils@^5.0.0",
+  "_id": "@typescript-eslint/experimental-utils@5.43.0",
   "_inBundle": false,
-  "_integrity": "sha512-2iHUK2Lh7PwNUlhFxxLI2haSDNyXvebBO9izhjhMoDC+S3XI9qt2DGFUsiJ89m2k7gGYch2aEpYqV5F/+nwZug==",
-  "_location": "/@typescript-eslint/parser",
+  "_integrity": "sha512-WkT637CumTJbm/hRbFfnHBMgfUYTKr08LitVsD7gQId7bi6rnkx3pu3jac67lmp5ObW4MpJ9SNFZAIOUB/Qbsw==",
+  "_location": "/@typescript-eslint/experimental-utils",
   "_phantomChildren": {},
   "_requested": {
     "type": "range",
     "registry": true,
-    "raw": "@typescript-eslint/parser@^5.5.0",
-    "name": "@typescript-eslint/parser",
-    "escapedName": "@typescript-eslint%2fparser",
+    "raw": "@typescript-eslint/experimental-utils@^5.0.0",
+    "name": "@typescript-eslint/experimental-utils",
+    "escapedName": "@typescript-eslint%2fexperimental-utils",
     "scope": "@typescript-eslint",
-    "rawSpec": "^5.5.0",
+    "rawSpec": "^5.0.0",
     "saveSpec": null,
-    "fetchSpec": "^5.5.0"
+    "fetchSpec": "^5.0.0"
   },
   "_requiredBy": [
-    "/eslint-config-react-app"
+    "/eslint-plugin-jest"
   ],
-  "_resolved": "https://registry.npmjs.org/@typescript-eslint/parser/-/parser-5.43.0.tgz",
-  "_shasum": "9c86581234b88f2ba406f0b99a274a91c11630fd",
-  "_spec": "@typescript-eslint/parser@^5.5.0",
-  "_where": "D:\\myapp\\node_modules\\eslint-config-react-app",
+  "_resolved": "https://registry.npmjs.org/@typescript-eslint/experimental-utils/-/experimental-utils-5.43.0.tgz",
+  "_shasum": "2fbea6ea89e59e780e42ca65bc39fc830db95ed4",
+  "_spec": "@typescript-eslint/experimental-utils@^5.0.0",
+  "_where": "D:\\myapp\\node_modules\\eslint-plugin-jest",
   "bugs": {
     "url": "https://github.com/typescript-eslint/typescript-eslint/issues"
   },
   "bundleDependencies": false,
   "dependencies": {
-    "@typescript-eslint/scope-manager": "5.43.0",
-    "@typescript-eslint/types": "5.43.0",
-    "@typescript-eslint/typescript-estree": "5.43.0",
-    "debug": "^4.3.4"
+    "@typescript-eslint/utils": "5.43.0"
   },
   "deprecated": false,
-  "description": "An ESLint custom parser which leverages TypeScript ESTree",
+  "description": "(Experimental) Utilities for working with TypeScript + ESLint together",
   "devDependencies": {
-    "@types/glob": "*",
-    "glob": "*",
     "typescript": "*"
   },
   "engines": {
@@ -46,6 +41,7 @@
   "files": [
     "dist",
     "_ts3.4",
+    "package.json",
     "README.md",
     "LICENSE"
   ],
@@ -56,29 +52,20 @@
   "gitHead": "8af1b4d970438b27ea041717bddadc41af8fc72a",
   "homepage": "https://github.com/typescript-eslint/typescript-eslint#readme",
   "keywords": [
-    "ast",
-    "ecmascript",
-    "javascript",
+    "eslint",
     "typescript",
-    "parser",
-    "syntax",
-    "eslint"
+    "estree"
   ],
-  "license": "BSD-2-Clause",
+  "license": "MIT",
   "main": "dist/index.js",
-  "name": "@typescript-eslint/parser",
+  "name": "@typescript-eslint/experimental-utils",
   "peerDependencies": {
     "eslint": "^6.0.0 || ^7.0.0 || ^8.0.0"
-  },
-  "peerDependenciesMeta": {
-    "typescript": {
-      "optional": true
-    }
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/typescript-eslint/typescript-eslint.git",
-    "directory": "packages/parser"
+    "directory": "packages/experimental-utils"
   },
   "scripts": {
     "build": "tsc -b tsconfig.build.json",
@@ -87,16 +74,8 @@
     "lint": "eslint . --ignore-path='../../.eslintignore'",
     "postbuild": "downlevel-dts dist _ts3.4/dist",
     "postclean": "rimraf dist && rimraf _ts3.4 && rimraf coverage",
-    "test": "jest --coverage",
     "typecheck": "tsc -p tsconfig.json --noEmit"
   },
   "types": "dist/index.d.ts",
-  "typesVersions": {
-    "<3.8": {
-      "*": [
-        "_ts3.4/*"
-      ]
-    }
-  },
   "version": "5.43.0"
 }
