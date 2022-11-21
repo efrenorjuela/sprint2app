@@ -1,16 +1,29 @@
-# Installation
-> `npm install --save @types/istanbul-lib-coverage`
+## istanbul-lib-coverage
 
-# Summary
-This package contains type definitions for istanbul-lib-coverage (https://istanbul.js.org).
+[![Greenkeeper badge](https://badges.greenkeeper.io/istanbuljs/istanbul-lib-coverage.svg)](https://greenkeeper.io/)
+[![Build Status](https://travis-ci.org/istanbuljs/istanbul-lib-coverage.svg?branch=master)](https://travis-ci.org/istanbuljs/istanbul-lib-coverage)
 
-# Details
-Files were exported from https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/istanbul-lib-coverage.
+An API that provides a read-only view of coverage information with the ability
+to merge and summarize coverage info.
 
-### Additional Details
- * Last updated: Thu, 23 Dec 2021 23:34:53 GMT
- * Dependencies: none
- * Global values: none
+Supersedes `object-utils` and `collector` from the v0 istanbul API.
 
-# Credits
-These definitions were written by [Jason Cheatham](https://github.com/jason0x43).
+See the docs for the full API.
+
+```js
+var libCoverage = require('istanbul-lib-coverage');
+var map = libCoverage.createCoverageMap(globalCoverageVar);
+var summary = libCoverage.createCoverageSummary();
+
+// merge another coverage map into the one we created
+map.merge(otherCoverageMap);
+
+// inspect and summarize all file coverage objects in the map
+map.files().forEach(function(f) {
+    var fc = map.fileCoverageFor(f),
+        s = fc.toSummary();
+    summary.merge(s);
+});
+
+console.log('Global summary', summary);
+```

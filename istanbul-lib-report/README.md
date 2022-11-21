@@ -1,16 +1,43 @@
-# Installation
-> `npm install --save @types/istanbul-lib-report`
+# istanbul-lib-report
 
-# Summary
-This package contains type definitions for istanbul-lib-report (https://istanbul.js.org).
+[![Greenkeeper badge](https://badges.greenkeeper.io/istanbuljs/istanbul-lib-report.svg)](https://greenkeeper.io/)
+[![Build Status](https://travis-ci.org/istanbuljs/istanbul-lib-report.svg?branch=master)](https://travis-ci.org/istanbuljs/istanbul-lib-report)
 
-# Details
-Files were exported from https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/istanbul-lib-report.
+Core reporting utilities for istanbul.
 
-### Additional Details
- * Last updated: Tue, 21 Jan 2020 01:00:06 GMT
- * Dependencies: [@types/istanbul-lib-coverage](https://npmjs.com/package/@types/istanbul-lib-coverage)
- * Global values: none
+## Example usage
 
-# Credits
-These definitions were written by Jason Cheatham (https://github.com/jason0x43), and Zacharias Björngren (https://github.com/zache).
+```js
+const libReport = require('istanbul-lib-report');
+const reports = require('istanbul-reports');
+
+// coverageMap, for instance, obtained from istanbul-lib-coverage
+const coverageMap;
+
+const configWatermarks = {
+  statements: [50, 80],
+  functions: [50, 80],
+  branches: [50, 80],
+  lines: [50, 80]
+};
+
+// create a context for report generation
+const context = libReport.createContext({
+  dir: 'report/output/dir',
+  // The summarizer to default to (may be overridden by some reports)
+  // values can be nested/flat/pkg. Defaults to 'pkg'
+  defaultSummarizer: 'nested',
+  watermarks: configWatermarks,
+  coverageMap,
+})
+
+// create an instance of the relevant report class, passing the
+// report name e.g. json/html/html-spa/text
+const report = reports.create('json', {
+  skipEmpty: configSkipEmpty,
+  skipFull: configSkipFull
+})
+
+// call execute to synchronously create and write the report to disk
+report.execute(context)
+```

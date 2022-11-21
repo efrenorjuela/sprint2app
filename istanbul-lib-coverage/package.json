@@ -1,58 +1,78 @@
 {
-  "_from": "@types/istanbul-lib-coverage@^2.0.0",
-  "_id": "@types/istanbul-lib-coverage@2.0.4",
+  "_from": "istanbul-lib-coverage@^3.2.0",
+  "_id": "istanbul-lib-coverage@3.2.0",
   "_inBundle": false,
-  "_integrity": "sha512-z/QT1XN4K4KYuslS23k62yDIDLwLFkzxOuMplDtObz0+y7VqJCaO2o+SPwHCvLFZh7xazvvoor2tA/hPz9ee7g==",
-  "_location": "/@types/istanbul-lib-coverage",
+  "_integrity": "sha512-eOeJ5BHCmHYvQK7xt9GkdHuzuCGS1Y6g9Gvnx3Ym33fz/HpLRYxiS0wHNr+m/MBC8B647Xt608vCDEvhl9c6Mw==",
+  "_location": "/istanbul-lib-coverage",
   "_phantomChildren": {},
   "_requested": {
     "type": "range",
     "registry": true,
-    "raw": "@types/istanbul-lib-coverage@^2.0.0",
-    "name": "@types/istanbul-lib-coverage",
-    "escapedName": "@types%2fistanbul-lib-coverage",
-    "scope": "@types",
-    "rawSpec": "^2.0.0",
+    "raw": "istanbul-lib-coverage@^3.2.0",
+    "name": "istanbul-lib-coverage",
+    "escapedName": "istanbul-lib-coverage",
+    "rawSpec": "^3.2.0",
     "saveSpec": null,
-    "fetchSpec": "^2.0.0"
+    "fetchSpec": "^3.2.0"
   },
   "_requiredBy": [
-    "/@jest/test-result",
-    "/@jest/types",
-    "/@types/istanbul-lib-report",
-    "/jest-watch-typeahead/@jest/test-result",
-    "/jest-watch-typeahead/@jest/types",
-    "/v8-to-istanbul"
+    "/@jest/reporters",
+    "/istanbul-lib-instrument",
+    "/istanbul-lib-report",
+    "/istanbul-lib-source-maps"
   ],
-  "_resolved": "https://registry.npmjs.org/@types/istanbul-lib-coverage/-/istanbul-lib-coverage-2.0.4.tgz",
-  "_shasum": "8467d4b3c087805d63580480890791277ce35c44",
-  "_spec": "@types/istanbul-lib-coverage@^2.0.0",
-  "_where": "D:\\myapp\\node_modules\\@jest\\types",
+  "_resolved": "https://registry.npmjs.org/istanbul-lib-coverage/-/istanbul-lib-coverage-3.2.0.tgz",
+  "_shasum": "189e7909d0a39fa5a3dfad5b03f71947770191d3",
+  "_spec": "istanbul-lib-coverage@^3.2.0",
+  "_where": "D:\\myapp\\node_modules\\istanbul-lib-instrument",
+  "author": {
+    "name": "Krishnan Anantheswaran",
+    "email": "kananthmail-github@yahoo.com"
+  },
   "bugs": {
-    "url": "https://github.com/DefinitelyTyped/DefinitelyTyped/issues"
+    "url": "https://github.com/istanbuljs/istanbuljs/issues"
   },
   "bundleDependencies": false,
-  "contributors": [
-    {
-      "name": "Jason Cheatham",
-      "url": "https://github.com/jason0x43"
-    }
-  ],
-  "dependencies": {},
   "deprecated": false,
-  "description": "TypeScript definitions for istanbul-lib-coverage",
-  "homepage": "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/istanbul-lib-coverage",
-  "license": "MIT",
-  "main": "",
-  "name": "@types/istanbul-lib-coverage",
+  "description": "Data library for istanbul coverage objects",
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^6.2.2",
+    "nyc": "^15.0.0-beta.2"
+  },
+  "engines": {
+    "node": ">=8"
+  },
+  "files": [
+    "lib",
+    "index.js"
+  ],
+  "homepage": "https://istanbul.js.org/",
+  "karmaDeps": {
+    "browserify-istanbul": "^0.2.1",
+    "karma": "^0.13.10",
+    "karma-browserify": "^4.2.1",
+    "karma-chrome-launcher": "^0.2.0",
+    "karma-coverage": "^0.4.2",
+    "karma-mocha": "^0.2.0",
+    "karma-phantomjs-launcher": "^0.2.0",
+    "phantomjs": "^1.9.17"
+  },
+  "keywords": [
+    "istanbul",
+    "coverage",
+    "data"
+  ],
+  "license": "BSD-3-Clause",
+  "main": "index.js",
+  "name": "istanbul-lib-coverage",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/DefinitelyTyped/DefinitelyTyped.git",
-    "directory": "types/istanbul-lib-coverage"
+    "url": "git+ssh://git@github.com/istanbuljs/istanbuljs.git",
+    "directory": "packages/istanbul-lib-coverage"
   },
-  "scripts": {},
-  "typeScriptVersion": "3.8",
-  "types": "index.d.ts",
-  "typesPublisherContentHash": "4df627cf114fc2a3196e0bde6df85bc30eb84e778319bcc5dcfdf962ee9fe093",
-  "version": "2.0.4"
+  "scripts": {
+    "test": "nyc mocha"
+  },
+  "version": "3.2.0"
 }

@@ -1,59 +1,74 @@
 {
-  "_from": "@types/istanbul-lib-report@*",
-  "_id": "@types/istanbul-lib-report@3.0.0",
+  "_from": "istanbul-lib-report@^3.0.0",
+  "_id": "istanbul-lib-report@3.0.0",
   "_inBundle": false,
-  "_integrity": "sha512-plGgXAPfVKFoYfa9NpYDAkseG+g6Jr294RqeqcqDixSbU34MZVJRi/P+7Y8GDpzkEwLaGZZOpKIEmeVZNtKsrg==",
-  "_location": "/@types/istanbul-lib-report",
+  "_integrity": "sha512-wcdi+uAKzfiGT2abPpKZ0hSU1rGQjUQnLvtY5MpQ7QCTahD3VODhcu4wcfY1YtkGaDD5yuydOLINXsfbus9ROw==",
+  "_location": "/istanbul-lib-report",
   "_phantomChildren": {},
   "_requested": {
     "type": "range",
     "registry": true,
-    "raw": "@types/istanbul-lib-report@*",
-    "name": "@types/istanbul-lib-report",
-    "escapedName": "@types%2fistanbul-lib-report",
-    "scope": "@types",
-    "rawSpec": "*",
+    "raw": "istanbul-lib-report@^3.0.0",
+    "name": "istanbul-lib-report",
+    "escapedName": "istanbul-lib-report",
+    "rawSpec": "^3.0.0",
     "saveSpec": null,
-    "fetchSpec": "*"
+    "fetchSpec": "^3.0.0"
   },
   "_requiredBy": [
-    "/@types/istanbul-reports"
+    "/@jest/reporters",
+    "/istanbul-reports"
   ],
-  "_resolved": "https://registry.npmjs.org/@types/istanbul-lib-report/-/istanbul-lib-report-3.0.0.tgz",
-  "_shasum": "c14c24f18ea8190c118ee7562b7ff99a36552686",
-  "_spec": "@types/istanbul-lib-report@*",
-  "_where": "D:\\myapp\\node_modules\\@types\\istanbul-reports",
+  "_resolved": "https://registry.npmjs.org/istanbul-lib-report/-/istanbul-lib-report-3.0.0.tgz",
+  "_shasum": "7518fe52ea44de372f460a76b5ecda9ffb73d8a6",
+  "_spec": "istanbul-lib-report@^3.0.0",
+  "_where": "D:\\myapp\\node_modules\\@jest\\reporters",
+  "author": {
+    "name": "Krishnan Anantheswaran",
+    "email": "kananthmail-github@yahoo.com"
+  },
   "bugs": {
-    "url": "https://github.com/DefinitelyTyped/DefinitelyTyped/issues"
+    "url": "https://github.com/istanbuljs/istanbuljs/issues"
   },
   "bundleDependencies": false,
-  "contributors": [
-    {
-      "name": "Jason Cheatham",
-      "url": "https://github.com/jason0x43"
-    },
-    {
-      "name": "Zacharias Björngren",
-      "url": "https://github.com/zache"
-    }
-  ],
   "dependencies": {
-    "@types/istanbul-lib-coverage": "*"
+    "istanbul-lib-coverage": "^3.0.0",
+    "make-dir": "^3.0.0",
+    "supports-color": "^7.1.0"
   },
   "deprecated": false,
-  "description": "TypeScript definitions for istanbul-lib-report",
-  "homepage": "https://github.com/DefinitelyTyped/DefinitelyTyped#readme",
-  "license": "MIT",
-  "main": "",
-  "name": "@types/istanbul-lib-report",
+  "description": "Base reporting library for istanbul",
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^6.2.2",
+    "nyc": "^15.0.0-beta.2",
+    "rimraf": "^3.0.0"
+  },
+  "engines": {
+    "node": ">=8"
+  },
+  "files": [
+    "lib",
+    "index.js"
+  ],
+  "gitHead": "5319df684b508ff6fb19fe8b9a6147a3c5924e4b",
+  "homepage": "https://istanbul.js.org/",
+  "keywords": [
+    "istanbul",
+    "report",
+    "api",
+    "lib"
+  ],
+  "license": "BSD-3-Clause",
+  "main": "index.js",
+  "name": "istanbul-lib-report",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/DefinitelyTyped/DefinitelyTyped.git",
-    "directory": "types/istanbul-lib-report"
+    "url": "git+ssh://git@github.com/istanbuljs/istanbuljs.git",
+    "directory": "packages/istanbul-lib-report"
   },
-  "scripts": {},
-  "typeScriptVersion": "2.8",
-  "types": "index.d.ts",
-  "typesPublisherContentHash": "f8b2f5e15a24d9f52a96c5cfadb0f582bf6200ce8643e15422c3c8f1a2bb1c63",
+  "scripts": {
+    "test": "nyc --nycrc-path=../../monorepo-per-package-full.js mocha"
+  },
   "version": "3.0.0"
 }
