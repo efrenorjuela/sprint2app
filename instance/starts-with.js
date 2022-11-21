@@ -1,1 +1,1 @@
-module.exports = require("core-js-pure/features/instance/starts-with");
+module.exports = require("core-js-pure/stable/instance/starts-with");

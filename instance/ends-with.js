@@ -1,1 +1,1 @@
-module.exports = require("core-js-pure/features/instance/ends-with");
+module.exports = require("core-js-pure/stable/instance/ends-with");

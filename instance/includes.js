@@ -1,1 +1,1 @@
-module.exports = require("core-js-pure/features/instance/includes");
+module.exports = require("core-js-pure/stable/instance/includes");

@@ -1,1 +1,1 @@
-module.exports = require("core-js-pure/features/instance/repeat");
+module.exports = require("core-js-pure/stable/instance/repeat");

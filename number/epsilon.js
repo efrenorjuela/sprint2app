@@ -1,1 +1,1 @@
-module.exports = require("core-js-pure/features/number/epsilon");
+module.exports = require("core-js-pure/stable/number/epsilon");

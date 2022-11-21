@@ -1,1 +1,1 @@
-module.exports = require("core-js-pure/features/math/sign");
+module.exports = require("core-js-pure/stable/math/sign");

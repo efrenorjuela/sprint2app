@@ -1,1 +1,1 @@
-module.exports = require("core-js-pure/features/instance/for-each");
+module.exports = require("core-js-pure/stable/instance/for-each");

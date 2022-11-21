@@ -1,1 +1,1 @@
-module.exports = require("core-js-pure/features/instance/slice");
+module.exports = require("core-js-pure/stable/instance/slice");

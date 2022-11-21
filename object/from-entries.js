@@ -1,1 +1,1 @@
-module.exports = require("core-js-pure/features/object/from-entries");
+module.exports = require("core-js-pure/stable/object/from-entries");

@@ -1,1 +1,1 @@
-module.exports = require("core-js-pure/features/reflect/define-property");
+module.exports = require("core-js-pure/stable/reflect/define-property");

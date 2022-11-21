@@ -1,1 +1,1 @@
-module.exports = require("core-js-pure/features/instance/concat");
+module.exports = require("core-js-pure/stable/instance/concat");

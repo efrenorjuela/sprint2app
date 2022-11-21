@@ -1,1 +1,1 @@
-module.exports = require("core-js-pure/features/json/stringify");
+module.exports = require("core-js-pure/stable/json/stringify");

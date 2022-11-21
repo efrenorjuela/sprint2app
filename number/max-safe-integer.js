@@ -1,1 +1,1 @@
-module.exports = require("core-js-pure/features/number/max-safe-integer");
+module.exports = require("core-js-pure/stable/number/max-safe-integer");

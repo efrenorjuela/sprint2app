@@ -1,1 +1,1 @@
-module.exports = require("core-js-pure/features/object/define-properties");
+module.exports = require("core-js-pure/stable/object/define-properties");

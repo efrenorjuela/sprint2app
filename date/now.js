@@ -1,1 +1,1 @@
-module.exports = require("core-js-pure/features/date/now");
+module.exports = require("core-js-pure/stable/date/now");

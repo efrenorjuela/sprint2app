@@ -1,1 +1,1 @@
-module.exports = require("core-js-pure/features/number/min-safe-integer");
+module.exports = require("core-js-pure/stable/number/min-safe-integer");

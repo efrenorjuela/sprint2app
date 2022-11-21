@@ -1,1 +1,1 @@
-module.exports = require("core-js-pure/features/instance/pad-end");
+module.exports = require("core-js-pure/stable/instance/pad-end");

@@ -1,1 +1,1 @@
-module.exports = require("core-js-pure/features/instance/code-point-at");
+module.exports = require("core-js-pure/stable/instance/code-point-at");

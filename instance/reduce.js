@@ -1,1 +1,1 @@
-module.exports = require("core-js-pure/features/instance/reduce");
+module.exports = require("core-js-pure/stable/instance/reduce");

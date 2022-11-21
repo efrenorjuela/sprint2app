@@ -1,1 +1,1 @@
-module.exports = require("core-js-pure/features/instance/trim-right");
+module.exports = require("core-js-pure/stable/instance/trim-right");

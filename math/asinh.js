@@ -1,1 +1,1 @@
-module.exports = require("core-js-pure/features/math/asinh");
+module.exports = require("core-js-pure/stable/math/asinh");

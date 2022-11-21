@@ -1,1 +1,1 @@
-module.exports = require("core-js-pure/features/math/fround");
+module.exports = require("core-js-pure/stable/math/fround");

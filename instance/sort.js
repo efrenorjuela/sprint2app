@@ -1,1 +1,1 @@
-module.exports = require("core-js-pure/features/instance/sort");
+module.exports = require("core-js-pure/stable/instance/sort");

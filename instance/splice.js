@@ -1,1 +1,1 @@
-module.exports = require("core-js-pure/features/instance/splice");
+module.exports = require("core-js-pure/stable/instance/splice");

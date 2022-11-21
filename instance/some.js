@@ -1,1 +1,1 @@
-module.exports = require("core-js-pure/features/instance/some");
+module.exports = require("core-js-pure/stable/instance/some");

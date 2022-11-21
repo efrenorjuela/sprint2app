@@ -1,1 +1,1 @@
-module.exports = require("core-js-pure/features/number/is-integer");
+module.exports = require("core-js-pure/stable/number/is-integer");

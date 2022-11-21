@@ -1,1 +1,1 @@
-module.exports = require("core-js-pure/features/number/is-safe-integer");
+module.exports = require("core-js-pure/stable/number/is-safe-integer");

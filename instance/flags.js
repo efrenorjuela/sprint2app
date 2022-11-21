@@ -1,1 +1,1 @@
-module.exports = require("core-js-pure/features/instance/flags");
+module.exports = require("core-js-pure/stable/instance/flags");

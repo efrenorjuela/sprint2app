@@ -1,1 +1,1 @@
-module.exports = require("core-js-pure/features/instance/copy-within");
+module.exports = require("core-js-pure/stable/instance/copy-within");

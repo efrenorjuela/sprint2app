@@ -1,1 +1,1 @@
-module.exports = require("core-js-pure/features/instance/last-index-of");
+module.exports = require("core-js-pure/stable/instance/last-index-of");

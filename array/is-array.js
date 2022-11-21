@@ -1,1 +1,1 @@
-module.exports = require("core-js-pure/features/array/is-array");
+module.exports = require("core-js-pure/stable/array/is-array");

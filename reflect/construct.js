@@ -1,1 +1,1 @@
-module.exports = require("core-js-pure/features/reflect/construct");
+module.exports = require("core-js-pure/stable/reflect/construct");

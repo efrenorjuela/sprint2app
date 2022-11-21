@@ -1,1 +1,1 @@
-module.exports = require("core-js-pure/features/object/get-prototype-of");
+module.exports = require("core-js-pure/stable/object/get-prototype-of");

@@ -1,1 +1,1 @@
-module.exports = require("core-js-pure/features/object/freeze");
+module.exports = require("core-js-pure/stable/object/freeze");

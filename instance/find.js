@@ -1,1 +1,1 @@
-module.exports = require("core-js-pure/features/instance/find");
+module.exports = require("core-js-pure/stable/instance/find");

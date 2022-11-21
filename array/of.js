@@ -1,1 +1,1 @@
-module.exports = require("core-js-pure/features/array/of");
+module.exports = require("core-js-pure/stable/array/of");

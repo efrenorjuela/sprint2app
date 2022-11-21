@@ -1,1 +1,1 @@
-module.exports = require("core-js-pure/features/math/acosh");
+module.exports = require("core-js-pure/stable/math/acosh");

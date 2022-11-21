@@ -1,1 +1,1 @@
-module.exports = require("core-js-pure/features/instance/keys");
+module.exports = require("core-js-pure/stable/instance/keys");

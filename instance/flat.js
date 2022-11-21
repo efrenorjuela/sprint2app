@@ -1,1 +1,1 @@
-module.exports = require("core-js-pure/features/instance/flat");
+module.exports = require("core-js-pure/stable/instance/flat");

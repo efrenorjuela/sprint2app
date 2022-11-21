@@ -1,1 +1,1 @@
-module.exports = require("core-js-pure/features/instance/reverse");
+module.exports = require("core-js-pure/stable/instance/reverse");

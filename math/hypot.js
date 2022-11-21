@@ -1,1 +1,1 @@
-module.exports = require("core-js-pure/features/math/hypot");
+module.exports = require("core-js-pure/stable/math/hypot");

@@ -1,1 +1,1 @@
-module.exports = require("core-js-pure/features/instance/filter");
+module.exports = require("core-js-pure/stable/instance/filter");

@@ -1,1 +1,1 @@
-module.exports = require("core-js-pure/features/object/assign");
+module.exports = require("core-js-pure/stable/object/assign");

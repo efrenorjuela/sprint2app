@@ -1,1 +1,1 @@
-module.exports = require("core-js-pure/features/instance/pad-start");
+module.exports = require("core-js-pure/stable/instance/pad-start");

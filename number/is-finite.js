@@ -1,1 +1,1 @@
-module.exports = require("core-js-pure/features/number/is-finite");
+module.exports = require("core-js-pure/stable/number/is-finite");

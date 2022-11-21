@@ -1,1 +1,1 @@
-module.exports = require("core-js-pure/features/number/is-nan");
+module.exports = require("core-js-pure/stable/number/is-nan");

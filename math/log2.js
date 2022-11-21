@@ -1,1 +1,1 @@
-module.exports = require("core-js-pure/features/math/log2");
+module.exports = require("core-js-pure/stable/math/log2");

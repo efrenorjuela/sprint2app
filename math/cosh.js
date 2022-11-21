@@ -1,1 +1,1 @@
-module.exports = require("core-js-pure/features/math/cosh");
+module.exports = require("core-js-pure/stable/math/cosh");

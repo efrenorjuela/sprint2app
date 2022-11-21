@@ -1,1 +1,1 @@
-module.exports = require("core-js-pure/features/reflect/apply");
+module.exports = require("core-js-pure/stable/reflect/apply");

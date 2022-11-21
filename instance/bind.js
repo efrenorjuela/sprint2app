@@ -1,1 +1,1 @@
-module.exports = require("core-js-pure/features/instance/bind");
+module.exports = require("core-js-pure/stable/instance/bind");

@@ -1,1 +1,1 @@
-module.exports = require("core-js-pure/features/instance/map");
+module.exports = require("core-js-pure/stable/instance/map");
