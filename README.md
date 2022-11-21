@@ -1,438 +1,378 @@
-<div align="center">
+# Glob
 
-<h1>Fork TS Checker Webpack Plugin</h1>
-<p>Webpack plugin that runs TypeScript type checker on a separate process.</p>
+Match files using the patterns the shell uses, like stars and stuff.
 
-[![npm version](https://img.shields.io/npm/v/fork-ts-checker-webpack-plugin.svg)](https://www.npmjs.com/package/fork-ts-checker-webpack-plugin)
-[![build status](https://github.com/TypeStrong/fork-ts-checker-webpack-plugin/workflows/CI/CD/badge.svg?branch=main&event=push)](https://github.com/TypeStrong/fork-ts-checker-webpack-plugin/actions?query=branch%3Amain+event%3Apush)
-[![downloads](http://img.shields.io/npm/dm/fork-ts-checker-webpack-plugin.svg)](https://npmjs.org/package/fork-ts-checker-webpack-plugin)
-[![commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
-[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
-[![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
+[![Build Status](https://travis-ci.org/isaacs/node-glob.svg?branch=master)](https://travis-ci.org/isaacs/node-glob/) [![Build Status](https://ci.appveyor.com/api/projects/status/kd7f3yftf7unxlsx?svg=true)](https://ci.appveyor.com/project/isaacs/node-glob) [![Coverage Status](https://coveralls.io/repos/isaacs/node-glob/badge.svg?branch=master&service=github)](https://coveralls.io/github/isaacs/node-glob?branch=master)
 
-</div>
+This is a glob implementation in JavaScript.  It uses the `minimatch`
+library to do its matching.
 
-## Features
+![a fun cartoon logo made of glob characters](logo/glob.png)
 
- * Speeds up [TypeScript](https://github.com/Microsoft/TypeScript) type checking and [ESLint](https://eslint.org/) linting (by moving each to a separate process) 🏎
- * Supports modern TypeScript features like [project references](https://www.typescriptlang.org/docs/handbook/project-references.html) and [incremental mode](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-4.html#faster-subsequent-builds-with-the---incremental-flag) ✨
- * Supports [Vue Single File Component](https://vuejs.org/v2/guide/single-file-components.html) ✅ 
- * Displays nice error messages with the [code frame](https://babeljs.io/docs/en/next/babel-code-frame.html) formatter 🌈
+## Usage
 
-## Installation
+Install with npm
 
-This plugin requires minimum **Node.js 10**, **Webpack 4**, **TypeScript 2.7** and optionally **ESLint 6**
-
-* If you depend on **Webpack 2**, **Webpack 3**, or **TSLint 4**, please use [version 3](https://github.com/TypeStrong/fork-ts-checker-webpack-plugin/tree/v3.1.1) of the plugin. 
-* If you depend on **TypeScript >= 2.1** and **< 2.7** or you can't update to **Node 10**, please use [version 4](https://github.com/TypeStrong/fork-ts-checker-webpack-plugin/tree/v4.1.4) of the plugin.
-```sh
-# with npm
-npm install --save-dev fork-ts-checker-webpack-plugin
-
-# with yarn
-yarn add --dev fork-ts-checker-webpack-plugin
+```
+npm i glob
 ```
 
-The minimal webpack config (with [ts-loader](https://github.com/TypeStrong/ts-loader))
+```javascript
+var glob = require("glob")
 
-```js
-// webpack.config.js
-const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
-
-module.exports = {
-  context: __dirname, // to automatically find tsconfig.json
-  entry: './src/index.ts',
-  resolve: {
-    extensions: [".ts", ".tsx", ".js"],
-  },
-  module: {
-    rules: [
-      {
-        test: /\.tsx?$/,
-        loader: 'ts-loader',
-        exclude: /node_modules/,
-        options: {
-          // disable type checker - we will use it in fork plugin
-          transpileOnly: true
-        }
-      }
-    ]
-  },
-  plugins: [new ForkTsCheckerWebpackPlugin()]
-};
+// options is optional
+glob("**/*.js", options, function (er, files) {
+  // files is an array of filenames.
+  // If the `nonull` option is set, and nothing
+  // was found, then files is ["**/*.js"]
+  // er is an error object or null.
+})
 ```
 
-> Examples how to configure it with [babel-loader](https://github.com/babel/babel-loader), [ts-loader](https://github.com/TypeStrong/ts-loader),
-> [eslint](https://github.com/eslint/eslint) and [Visual Studio Code](https://code.visualstudio.com/) are in the 
-> [**examples**](./examples) directory.
+## Glob Primer
 
-## Modules resolution
+"Globs" are the patterns you type when you do stuff like `ls *.js` on
+the command line, or put `build/*` in a `.gitignore` file.
 
-It's very important to be aware that **this plugin uses [TypeScript](https://github.com/Microsoft/TypeScript)'s, not
-[webpack](https://github.com/webpack/webpack)'s modules resolution**. It means that you have to setup `tsconfig.json` correctly. 
+Before parsing the path part patterns, braced sections are expanded
+into a set.  Braced sections start with `{` and end with `}`, with any
+number of comma-delimited sections within.  Braced sections may contain
+slash characters, so `a{/b/c,bcd}` would expand into `a/b/c` and `abcd`.
 
-> It's because of the performance - with TypeScript's module resolution we don't have to wait for webpack to compile files.
->
-> To debug TypeScript's modules resolution, you can use `tsc --traceResolution` command.
+The following characters have special magic meaning when used in a
+path portion:
 
-## ESLint
+* `*` Matches 0 or more characters in a single path portion
+* `?` Matches 1 character
+* `[...]` Matches a range of characters, similar to a RegExp range.
+  If the first character of the range is `!` or `^` then it matches
+  any character not in the range.
+* `!(pattern|pattern|pattern)` Matches anything that does not match
+  any of the patterns provided.
+* `?(pattern|pattern|pattern)` Matches zero or one occurrence of the
+  patterns provided.
+* `+(pattern|pattern|pattern)` Matches one or more occurrences of the
+  patterns provided.
+* `*(a|b|c)` Matches zero or more occurrences of the patterns provided
+* `@(pattern|pat*|pat?erN)` Matches exactly one of the patterns
+  provided
+* `**` If a "globstar" is alone in a path portion, then it matches
+  zero or more directories and subdirectories searching for matches.
+  It does not crawl symlinked directories.
 
-If you'd like to use ESLint with the plugin, ensure you have the relevant dependencies installed:
+### Dots
 
-```sh
-# with npm
-npm install --save-dev eslint @typescript-eslint/parser @typescript-eslint/eslint-plugin
+If a file or directory path portion has a `.` as the first character,
+then it will not match any glob pattern unless that pattern's
+corresponding path part also has a `.` as its first character.
 
-# with yarn
-yarn add --dev eslint @typescript-eslint/parser @typescript-eslint/eslint-plugin
+For example, the pattern `a/.*/c` would match the file at `a/.b/c`.
+However the pattern `a/*/c` would not, because `*` does not start with
+a dot character.
+
+You can make glob treat dots as normal characters by setting
+`dot:true` in the options.
+
+### Basename Matching
+
+If you set `matchBase:true` in the options, and the pattern has no
+slashes in it, then it will seek for any file anywhere in the tree
+with a matching basename.  For example, `*.js` would match
+`test/simple/basic.js`.
+
+### Empty Sets
+
+If no matching files are found, then an empty array is returned.  This
+differs from the shell, where the pattern itself is returned.  For
+example:
+
+    $ echo a*s*d*f
+    a*s*d*f
+
+To get the bash-style behavior, set the `nonull:true` in the options.
+
+### See Also:
+
+* `man sh`
+* `man bash` (Search for "Pattern Matching")
+* `man 3 fnmatch`
+* `man 5 gitignore`
+* [minimatch documentation](https://github.com/isaacs/minimatch)
+
+## glob.hasMagic(pattern, [options])
+
+Returns `true` if there are any special characters in the pattern, and
+`false` otherwise.
+
+Note that the options affect the results.  If `noext:true` is set in
+the options object, then `+(a|b)` will not be considered a magic
+pattern.  If the pattern has a brace expansion, like `a/{b/c,x/y}`
+then that is considered magical, unless `nobrace:true` is set in the
+options.
+
+## glob(pattern, [options], cb)
+
+* `pattern` `{String}` Pattern to be matched
+* `options` `{Object}`
+* `cb` `{Function}`
+  * `err` `{Error | null}`
+  * `matches` `{Array<String>}` filenames found matching the pattern
+
+Perform an asynchronous glob search.
+
+## glob.sync(pattern, [options])
+
+* `pattern` `{String}` Pattern to be matched
+* `options` `{Object}`
+* return: `{Array<String>}` filenames found matching the pattern
+
+Perform a synchronous glob search.
+
+## Class: glob.Glob
+
+Create a Glob object by instantiating the `glob.Glob` class.
+
+```javascript
+var Glob = require("glob").Glob
+var mg = new Glob(pattern, options, cb)
 ```
 
-Then set up ESLint in the plugin. This is the minimal configuration:
-```js
-// webpack.config.js
-const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
+It's an EventEmitter, and starts walking the filesystem to find matches
+immediately.
 
-module.exports = {
-  // ...the webpack configuration
-  plugins: [
-    new ForkTsCheckerWebpackPlugin({
-      eslint: {
-        files: './src/**/*.{ts,tsx,js,jsx}' // required - same as command `eslint ./src/**/*.{ts,tsx,js,jsx} --ext .ts,.tsx,.js,.jsx`
-      }
-    })
-  ]
-};
+### new glob.Glob(pattern, [options], [cb])
+
+* `pattern` `{String}` pattern to search for
+* `options` `{Object}`
+* `cb` `{Function}` Called when an error occurs, or matches are found
+  * `err` `{Error | null}`
+  * `matches` `{Array<String>}` filenames found matching the pattern
+
+Note that if the `sync` flag is set in the options, then matches will
+be immediately available on the `g.found` member.
+
+### Properties
+
+* `minimatch` The minimatch object that the glob uses.
+* `options` The options object passed in.
+* `aborted` Boolean which is set to true when calling `abort()`.  There
+  is no way at this time to continue a glob search after aborting, but
+  you can re-use the statCache to avoid having to duplicate syscalls.
+* `cache` Convenience object.  Each field has the following possible
+  values:
+  * `false` - Path does not exist
+  * `true` - Path exists
+  * `'FILE'` - Path exists, and is not a directory
+  * `'DIR'` - Path exists, and is a directory
+  * `[file, entries, ...]` - Path exists, is a directory, and the
+    array value is the results of `fs.readdir`
+* `statCache` Cache of `fs.stat` results, to prevent statting the same
+  path multiple times.
+* `symlinks` A record of which paths are symbolic links, which is
+  relevant in resolving `**` patterns.
+* `realpathCache` An optional object which is passed to `fs.realpath`
+  to minimize unnecessary syscalls.  It is stored on the instantiated
+  Glob object, and may be re-used.
+
+### Events
+
+* `end` When the matching is finished, this is emitted with all the
+  matches found.  If the `nonull` option is set, and no match was found,
+  then the `matches` list contains the original pattern.  The matches
+  are sorted, unless the `nosort` flag is set.
+* `match` Every time a match is found, this is emitted with the specific
+  thing that matched. It is not deduplicated or resolved to a realpath.
+* `error` Emitted when an unexpected error is encountered, or whenever
+  any fs error occurs if `options.strict` is set.
+* `abort` When `abort()` is called, this event is raised.
+
+### Methods
+
+* `pause` Temporarily stop the search
+* `resume` Resume the search
+* `abort` Stop the search forever
+
+### Options
+
+All the options that can be passed to Minimatch can also be passed to
+Glob to change pattern matching behavior.  Also, some have been added,
+or have glob-specific ramifications.
+
+All options are false by default, unless otherwise noted.
+
+All options are added to the Glob object, as well.
+
+If you are running many `glob` operations, you can pass a Glob object
+as the `options` argument to a subsequent operation to shortcut some
+`stat` and `readdir` calls.  At the very least, you may pass in shared
+`symlinks`, `statCache`, `realpathCache`, and `cache` options, so that
+parallel glob operations will be sped up by sharing information about
+the filesystem.
+
+* `cwd` The current working directory in which to search.  Defaults
+  to `process.cwd()`.
+* `root` The place where patterns starting with `/` will be mounted
+  onto.  Defaults to `path.resolve(options.cwd, "/")` (`/` on Unix
+  systems, and `C:\` or some such on Windows.)
+* `dot` Include `.dot` files in normal matches and `globstar` matches.
+  Note that an explicit dot in a portion of the pattern will always
+  match dot files.
+* `nomount` By default, a pattern starting with a forward-slash will be
+  "mounted" onto the root setting, so that a valid filesystem path is
+  returned.  Set this flag to disable that behavior.
+* `mark` Add a `/` character to directory matches.  Note that this
+  requires additional stat calls.
+* `nosort` Don't sort the results.
+* `stat` Set to true to stat *all* results.  This reduces performance
+  somewhat, and is completely unnecessary, unless `readdir` is presumed
+  to be an untrustworthy indicator of file existence.
+* `silent` When an unusual error is encountered when attempting to
+  read a directory, a warning will be printed to stderr.  Set the
+  `silent` option to true to suppress these warnings.
+* `strict` When an unusual error is encountered when attempting to
+  read a directory, the process will just continue on in search of
+  other matches.  Set the `strict` option to raise an error in these
+  cases.
+* `cache` See `cache` property above.  Pass in a previously generated
+  cache object to save some fs calls.
+* `statCache` A cache of results of filesystem information, to prevent
+  unnecessary stat calls.  While it should not normally be necessary
+  to set this, you may pass the statCache from one glob() call to the
+  options object of another, if you know that the filesystem will not
+  change between calls.  (See "Race Conditions" below.)
+* `symlinks` A cache of known symbolic links.  You may pass in a
+  previously generated `symlinks` object to save `lstat` calls when
+  resolving `**` matches.
+* `sync` DEPRECATED: use `glob.sync(pattern, opts)` instead.
+* `nounique` In some cases, brace-expanded patterns can result in the
+  same file showing up multiple times in the result set.  By default,
+  this implementation prevents duplicates in the result set.  Set this
+  flag to disable that behavior.
+* `nonull` Set to never return an empty set, instead returning a set
+  containing the pattern itself.  This is the default in glob(3).
+* `debug` Set to enable debug logging in minimatch and glob.
+* `nobrace` Do not expand `{a,b}` and `{1..3}` brace sets.
+* `noglobstar` Do not match `**` against multiple filenames.  (Ie,
+  treat it as a normal `*` instead.)
+* `noext` Do not match `+(a|b)` "extglob" patterns.
+* `nocase` Perform a case-insensitive match.  Note: on
+  case-insensitive filesystems, non-magic patterns will match by
+  default, since `stat` and `readdir` will not raise errors.
+* `matchBase` Perform a basename-only match if the pattern does not
+  contain any slash characters.  That is, `*.js` would be treated as
+  equivalent to `**/*.js`, matching all js files in all directories.
+* `nodir` Do not match directories, only files.  (Note: to match
+  *only* directories, simply put a `/` at the end of the pattern.)
+* `ignore` Add a pattern or an array of glob patterns to exclude matches.
+  Note: `ignore` patterns are *always* in `dot:true` mode, regardless
+  of any other settings.
+* `follow` Follow symlinked directories when expanding `**` patterns.
+  Note that this can result in a lot of duplicate references in the
+  presence of cyclic links.
+* `realpath` Set to true to call `fs.realpath` on all of the results.
+  In the case of a symlink that cannot be resolved, the full absolute
+  path to the matched entry is returned (though it will usually be a
+  broken symlink)
+* `absolute` Set to true to always receive absolute paths for matched
+  files.  Unlike `realpath`, this also affects the values returned in
+  the `match` event.
+* `fs` File-system object with Node's `fs` API. By default, the built-in
+  `fs` module will be used. Set to a volume provided by a library like
+  `memfs` to avoid using the "real" file-system.
+
+## Comparisons to other fnmatch/glob implementations
+
+While strict compliance with the existing standards is a worthwhile
+goal, some discrepancies exist between node-glob and other
+implementations, and are intentional.
+
+The double-star character `**` is supported by default, unless the
+`noglobstar` flag is set.  This is supported in the manner of bsdglob
+and bash 4.3, where `**` only has special significance if it is the only
+thing in a path part.  That is, `a/**/b` will match `a/x/y/b`, but
+`a/**b` will not.
+
+Note that symlinked directories are not crawled as part of a `**`,
+though their contents may match against subsequent portions of the
+pattern.  This prevents infinite loops and duplicates and the like.
+
+If an escaped pattern has no matches, and the `nonull` flag is set,
+then glob returns the pattern as-provided, rather than
+interpreting the character escapes.  For example,
+`glob.match([], "\\*a\\?")` will return `"\\*a\\?"` rather than
+`"*a?"`.  This is akin to setting the `nullglob` option in bash, except
+that it does not resolve escaped pattern characters.
+
+If brace expansion is not disabled, then it is performed before any
+other interpretation of the glob pattern.  Thus, a pattern like
+`+(a|{b),c)}`, which would not be valid in bash or zsh, is expanded
+**first** into the set of `+(a|b)` and `+(a|c)`, and those patterns are
+checked for validity.  Since those two are valid, matching proceeds.
+
+### Comments and Negation
+
+Previously, this module let you mark a pattern as a "comment" if it
+started with a `#` character, or a "negated" pattern if it started
+with a `!` character.
+
+These options were deprecated in version 5, and removed in version 6.
+
+To specify things that should not match, use the `ignore` option.
+
+## Windows
+
+**Please only use forward-slashes in glob expressions.**
+
+Though windows uses either `/` or `\` as its path separator, only `/`
+characters are used by this glob implementation.  You must use
+forward-slashes **only** in glob expressions.  Back-slashes will always
+be interpreted as escape characters, not path separators.
+
+Results from absolute patterns such as `/foo/*` are mounted onto the
+root setting using `path.join`.  On windows, this will by default result
+in `/foo/*` matching `C:\foo\bar.txt`.
+
+## Race Conditions
+
+Glob searching, by its very nature, is susceptible to race conditions,
+since it relies on directory walking and such.
+
+As a result, it is possible that a file that exists when glob looks for
+it may have been deleted or modified by the time it returns the result.
+
+As part of its internal implementation, this program caches all stat
+and readdir calls that it makes, in order to cut down on system
+overhead.  However, this also makes it even more susceptible to races,
+especially if the cache or statCache objects are reused between glob
+calls.
+
+Users are thus advised not to use a glob result as a guarantee of
+filesystem state in the face of rapid changes.  For the vast majority
+of operations, this is never a problem.
+
+## Glob Logo
+Glob's logo was created by [Tanya Brassie](http://tanyabrassie.com/). Logo files can be found [here](https://github.com/isaacs/node-glob/tree/master/logo).
+
+The logo is licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-sa/4.0/).
+
+## Contributing
+
+Any change to behavior (including bugfixes) must come with a test.
+
+Patches that fail tests or reduce performance will be rejected.
+
+```
+# to run tests
+npm test
+
+# to re-generate test fixtures
+npm run test-regen
+
+# to benchmark against bash/zsh
+npm run bench
+
+# to profile javascript
+npm run prof
 ```
 
-You should also have an ESLint configuration file in your root project directory. 
-Here is a sample `.eslintrc.js` configuration for a TypeScript project:
-
-```js
-module.exports = {
-  parser: '@typescript-eslint/parser',
-  parserOptions: {
-    ecmaVersion: 2018,
-    sourceType: 'module',
-  },
-  extends: [
-    'plugin:@typescript-eslint/recommended'
-  ],
-  rules: {
-    // place to specify ESLint rules - can be used to overwrite rules specified from the extended configs
-    // e.g. "@typescript-eslint/explicit-function-return-type": "off",
-  }
-};
-```
-
-There's a [good explanation on setting up TypeScript ESLint support by Robert Cooper](https://dev.to/robertcoopercode/using-eslint-and-prettier-in-a-typescript-project-53jb).
-
-## Options
-
-This plugin uses [`cosmiconfig`](https://github.com/davidtheclark/cosmiconfig). This means that besides the plugin constructor,
-you can place your configuration in the:
- * `"fork-ts-checker"` field in the `package.json`
- * `.fork-ts-checkerrc` file in JSON or YAML format
- * `fork-ts-checker.config.js` file exporting a JS object
-  
-Options passed to the plugin constructor will overwrite options from the cosmiconfig (using [deepmerge](https://github.com/TehShrike/deepmerge)).
-
-| Name              | Type                               | Default value                                                      | Description |
-| ----------------- | ---------------------------------- | ------------------------------------------------------------------ | ----------- |
-| `async`           | `boolean`                          | `compiler.options.mode === 'development'`                          | If `true`, reports issues **after** webpack's compilation is done. Thanks to that it doesn't block the compilation. Used only in the `watch` mode. |
-| `typescript`      | `object` or `boolean`              | `true`                                                             | If a `boolean`, it enables/disables TypeScript checker. If an `object`, see [TypeScript options](#typescript-options). |
-| `eslint`          | `object`                           | `undefined`                                                        | If `undefined`, it disables ESLint linter. If an `object`, see [ESLint options](#eslint-options). |
-| `issue`           | `object`                           | `{}`                                                               | See [Issues options](#issues-options). |
-| `formatter`       | `string` or `object` or `function` | `codeframe`                                                        | Available formatters are `basic`, `codeframe` and a custom `function`. To [configure](https://babeljs.io/docs/en/babel-code-frame#options) `codeframe` formatter, pass object: `{ type: 'codeframe', options: { <coderame options> } }`. |
-| `logger`          | `object`              | `{ infrastructure: 'silent', issues: 'console', devServer: true }` | Available loggers are `silent`, `console`, and `webpack-infrastructure`. Infrastructure logger prints additional information, issue logger prints `issues` in the `async` mode. If `devServer` is set to `false`, errors will not be reported to Webpack Dev Server. |
-
-### TypeScript options
-
-Options for the TypeScript checker (`typescript` option object).
-
-| Name                 | Type      | Default value                                                                                                  | Description |
-| -------------------- | --------- | -------------------------------------------------------------------------------------------------------------- | ----------- |
-| `enabled`            | `boolean` | `true`                                                                                                         | If `true`, it enables TypeScript checker. |
-| `memoryLimit`        | `number`  | `2048`                                                                                                         | Memory limit for the checker process in MB. If the process exits with the allocation failed error, try to increase this number. |
-| `configFile`         | `string`  | `'tsconfig.json'`                                                                                              | Path to the `tsconfig.json` file (path relative to the `compiler.options.context` or absolute path) |
-| `configOverwrite`    | `object`  | `{ compilerOptions: { skipLibCheck: true, sourceMap: false, inlineSourceMap: false, declarationMap: false } }` | This configuration will overwrite configuration from the `tsconfig.json` file. Supported fields are: `extends`, `compilerOptions`, `include`, `exclude`, `files`, and `references`. |
-| `context`            | `string`  | `dirname(configuration.configFile)`                                                                            | The base path for finding files specified in the `tsconfig.json`. Same as the `context` option from the [ts-loader](https://github.com/TypeStrong/ts-loader#context). Useful if you want to keep your `tsconfig.json` in an external package. Keep in mind that **not** having a `tsconfig.json` in your project root can cause different behaviour between `fork-ts-checker-webpack-plugin` and `tsc`. When using editors like `VS Code` it is advised to add a `tsconfig.json` file to the root of the project and extend the config file referenced in option `configFile`.  |
-| `build`              | `boolean` | `false`                                                                                                        | The equivalent of the `--build` flag for the `tsc` command. |
-| `mode`               | `'readonly'` or `'write-tsbuildinfo'` or `'write-dts'` or `'write-references'` | `'write-tsbuildinfo'`                                      | If you use the `babel-loader`, it's recommended to use `write-references` mode to improve initial compilation time. If you use `ts-loader`, it's recommended to use `write-tsbuildinfo` mode to not overwrite files emitted by the `ts-loader`. If you use `ts-loader` with `transpileOnly` flag set to `true`, use `'write-dts` to emit the type definition files. |
-| `diagnosticOptions` | `object`  | `{ syntactic: false, semantic: true, declaration: false, global: false }`                                      | Settings to select which diagnostics do we want to perform. |
-| `extensions`         | `object`  | `{}`                                                                                                           | See [TypeScript extensions options](#typescript-extensions-options). |
-| `profile`            | `boolean` | `false`                                                                                                        | Measures and prints timings related to the TypeScript performance. |
-| `typescriptPath`     | `string`  | `require.resolve('typescript')`                                                                                | If supplied this is a custom path where TypeScript can be found. |
-
-#### TypeScript extensions options
-
-Options for the TypeScript checker extensions (`typescript.extensions` option object).
-
-| Name                 | Type                  | Default value             | Description |
-| -------------------- | --------------------- | ------------------------- | ----------- |
-| `vue`                | `object` or `boolean` | `false`                   | If `true`, it enables Vue [Single File Component](https://vuejs.org/v2/guide/single-file-components.html) support. |
-| `vue.enabled`        | `boolean`             | `false`                   | Same as the `vue` option |
-| `vue.compiler`       | `string`              | `'vue-template-compiler'` | The package name of the compiler that will be used to parse `.vue` files. You can use `'nativescript-vue-template-compiler'` if you use [nativescript-vue](https://github.com/nativescript-vue/nativescript-vue) | 
-
-### ESLint options
-
-Options for the ESLint linter (`eslint` option object).
-
-| Name                 | Type                   | Default value             | Description |
-| -------------------- | ---------------------- | ------------------------- | ----------- |
-| `enabled`            | `boolean`              | `false`                   | If `true`, it enables ESLint linter. If you set the `files` option, it will be `true` by default. |
-| `files`              | `string` or `string[]` | This value is required    | One or more [glob patterns](https://en.wikipedia.org/wiki/Glob_(programming)) to the files that should be linted. Works the same as the `eslint` command. |
-| `memoryLimit`        | `number`               | `2048`                    | Memory limit for the linter process in MB. If the process exits with the allocation failed error, try to increase this number. |
-| `options`            | `object`               | `{}`                      | [Options](https://eslint.org/docs/developer-guide/nodejs-api#cliengine) that can be used to initialize ESLint. |
-
-### Issues options
-
-Options for the issues filtering (`issue` option object).
-I could write some plain text explanation of these options but I think code will explain it better:
-
-```typescript
-interface Issue {
-  origin: 'typescript' | 'eslint';
-  severity: 'error' | 'warning';
-  code: string;
-  file?: string;
-}
-
-type IssueMatch = Partial<Issue>; // file field supports glob matching
-type IssuePredicate = (issue: Issue) => boolean;
-type IssueFilter = IssueMatch | IssuePredicate | (IssueMatch | IssuePredicate)[];
-```
-
-| Name      | Type          | Default value | Description |
-| --------- | ------------- | ------------- | ----------- |
-| `include` | `IssueFilter` | `undefined`   | If `object`, defines issue properties that should be [matched](./src/issue/IssueMatch.ts). If `function`, acts as a predicate where `issue` is an argument. |
-| `exclude` | `IssueFilter` | `undefined`   | Same as `include` but issues that match this predicate will be excluded. |
-
-<details>
-<summary>Expand example</summary>
-
-Include issues from the `src` directory, exclude eslint issues from `.spec.ts` files:
-
-```js
-module.exports = {
-  // ...the webpack configuration
-  plugins: [
-    new ForkTsCheckerWebpackPlugin({
-      issue: {
-        include: [
-          { file: '**/src/**/*' }
-        ],
-        exclude: [
-          { origin: 'eslint', file: '**/*.spec.ts' }
-        ]
-      }
-    })
-  ]
-};
-```
-
-</details>
-
-## Vue.js
-
-⚠️ There are additional **constraints** regarding Vue.js Single File Component support: ⚠️
- * It requires **TypeScript >= 3.8.0** (it's a limitation of the `transpileOnly` mode from `ts-loader`)
- * It doesn't work with the `build` mode (project references)
-
-To enable Vue.js support, follow these steps:
-
-<details>
-<summary>Expand Vue.js set up instruction</summary>
-
-1. Ensure you have all required packages installed:
-```sh
-# with npm
-npm install --save vue vue-class-component
-npm install --save-dev vue-loader ts-loader css-loader vue-template-compiler 
-
-# with yarn
-yarn add vue vue-class-component
-yarn add --dev vue-loader ts-loader css-loader vue-template-compiler 
-```
-
-2. Add `tsconfig.json` configuration:
-```json
-{
-  "compilerOptions": {
-    "experimentalDecorators": true,
-    "jsx": "preserve",
-    "target": "ES5",
-    "lib": ["ES6", "DOM"],
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["src/*"],
-      "~/*": ["src/*"]
-    },
-    "sourceMap": true,
-    "importsNotUsedAsValues": "preserve"
-  },
-  "include": [
-    "src/**/*.ts",
-    "src/**/*.vue"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
-}
-```
-
-3. Add `webpack.config.js` configuration:
-```js
-const path = require('path');
-const VueLoaderPlugin = require('vue-loader/lib/plugin');
-const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
-
-module.exports = {
-  entry: './src/index.ts',
-  output: {
-    filename: 'index.js',
-    path: path.resolve(__dirname, 'dist'),
-  },
-  module: {
-    rules: [
-      {
-        test: /\.vue$/,
-        loader: 'vue-loader'
-      },
-      {
-        test: /\.ts$/,
-        loader: 'ts-loader',
-        exclude: /node_modules/,
-        options: {
-          appendTsSuffixTo: [/\.vue$/],
-          transpileOnly: true
-        }
-      },
-      {
-        test: /\.css$/,
-        loader: 'css-loader'
-      },
-    ],
-  },
-  resolve: {
-    extensions: ['.ts', '.js', '.vue', '.json'],
-    alias: {
-      '@': path.resolve(__dirname, './src'),
-      '~': path.resolve(__dirname, './src'),
-    }
-  },
-  plugins: [
-    new VueLoaderPlugin(),
-    new ForkTsCheckerWebpackPlugin({
-      typescript: {
-        extensions: {
-          vue: true
-        }
-      }
-    })
-  ]
-};
-```
-
-4. Add `src/types/vue.d.ts` file to shim `.vue` modules:
-```typescript
-declare module "*.vue" {
-  import Vue from "vue";
-  export default Vue;
-}
-```
-
-5. If you are working in VSCode, you can get the [Vetur](https://marketplace.visualstudio.com/items?itemName=octref.vetur) extension to complete the developer workflow.
-
-</details>
-
-## Plugin hooks
-
-This plugin provides some custom webpack hooks:
-
-| Hook key   | Type                       | Params                | Description |
-| ---------- | -------------------------- | --------------------- | ----------- |
-| `start`    | `AsyncSeriesWaterfallHook` | `change, compilation` | Starts issues checking for a compilation. It's an async waterfall hook, so you can modify the list of changed and removed files or delay the start of the service. |
-| `waiting`  | `SyncHook`                 | `compilation`         | Waiting for the issues checking. |
-| `canceled` | `SyncHook`                 | `compilation`         | Issues checking for the compilation has been canceled. |
-| `error`    | `SyncHook`                 | `compilation`         | An error occurred during issues checking. |
-| `issues`   | `SyncWaterfallHook`        | `issues, compilation` | Issues have been received and will be reported. It's a waterfall hook, so you can modify the list of received issues. |
-
-To access plugin hooks and tap into the event, we need to use the `getCompilerHooks` static method.
-When we call this method with a [webpack compiler instance](https://webpack.js.org/api/node/), it returns the object with
-[tapable](https://github.com/webpack/tapable) hooks where you can pass in your callbacks.
-
-```js
-// ./src/webpack/MyWebpackPlugin.js
-const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
-
-class MyWebpackPlugin {
-  apply(compiler) {
-    const hooks = ForkTsCheckerWebpackPlugin.getCompilerHooks(compiler);
-
-    // log some message on waiting
-    hooks.waiting.tap('MyPlugin', () => {
-      console.log('waiting for issues');
-    });
-    // don't show warnings
-    hooks.issues.tap('MyPlugin', (issues) => 
-      issues.filter((issue) => issue.severity === 'error')
-    );
-  }
-}
-
-module.exports = MyWebpackPlugin;
-
-// webpack.config.js
-const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
-const MyWebpackPlugin = require('./src/webpack/MyWebpackPlugin');
-
-module.exports = {
-  /* ... */
-  plugins: [
-    new ForkTsCheckerWebpackPlugin(),
-    new MyWebpackPlugin()
-  ]
-};
-```
-
-## Typings
-
-To use the plugin typings, you have to install `@types/webpack`. It's not included by default to not collide with your
-existing typings (`@types/webpack` imports `@types/node`). [It's an old TypeScript issue](https://github.com/microsoft/TypeScript/issues/18588), 
-the alternative is to set `skipLibCheck: true` in the `compilerOptions` 😉
-```sh
-# with npm
-npm install --save-dev @types/webpack
-
-# with yarn
-yarn add --dev @types/webpack
-```
-
-## Profiling types resolution
-
-Starting from TypeScript 4.1.0, you can profile long type checks by
-setting "generateTrace" compiler option. This is an instruction from [microsoft/TypeScript#40063](https://github.com/microsoft/TypeScript/pull/40063):
-
-1. Set "generateTrace": "{folderName}" in your `tsconfig.json`
-2. Look in the resulting folder. If you used build mode, there will be a `legend.json` telling you what went where. 
-   Otherwise, there will be `trace.json` file and `types.json` files.
-3. Navigate to [edge://tracing](edge://tracing) or [chrome://tracing](chrome://tracing) and load `trace.json`
-4. Expand Process 1 with the little triangle in the left sidebar
-5. Click on different blocks to see their payloads in the bottom pane
-6. Open `types.json` in an editor
-7. When you see a type ID in the tracing output, go-to-line {id} to find data about that type
-
-
-## Related projects
- 
- * [`ts-loader`](https://github.com/TypeStrong/ts-loader) - TypeScript loader for webpack.
- * [`babel-loader`](https://github.com/babel/babel-loader) - Alternative TypeScript loader for webpack.
- * [`fork-ts-checker-notifier-webpack-plugin`](https://github.com/johnnyreilly/fork-ts-checker-notifier-webpack-plugin) - Notifies about build status using system notifications (similar to the [webpack-notifier](https://github.com/Turbo87/webpack-notifier)).
-
-## Credits
-
-This plugin was created in [Realytics](https://www.realytics.io/) in 2017. Thank you for supporting Open Source.
-
-## License
-
-MIT License
+![](oh-my-glob.gif)
