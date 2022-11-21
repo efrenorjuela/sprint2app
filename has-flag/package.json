@@ -3,7 +3,7 @@
   "_id": "has-flag@4.0.0",
   "_inBundle": false,
   "_integrity": "sha512-EykJT/Q1KjTWctppgIAgfSO0tKVuZUjhgMr17kqTumMl6Afv3EISleU7qZUzoXDFTAHTDC4NOoG/ZxU3EvlMPQ==",
-  "_location": "/@types/jest/has-flag",
+  "_location": "/eslint-webpack-plugin/has-flag",
   "_phantomChildren": {},
   "_requested": {
     "type": "range",
@@ -16,12 +16,12 @@
     "fetchSpec": "^4.0.0"
   },
   "_requiredBy": [
-    "/@types/jest/supports-color"
+    "/eslint-webpack-plugin/supports-color"
   ],
   "_resolved": "https://registry.npmjs.org/has-flag/-/has-flag-4.0.0.tgz",
   "_shasum": "944771fd9c81c81265c4d6941860da06bb59479b",
   "_spec": "has-flag@^4.0.0",
-  "_where": "D:\\myapp\\node_modules\\@types\\jest\\node_modules\\supports-color",
+  "_where": "D:\\myapp\\node_modules\\eslint-webpack-plugin\\node_modules\\supports-color",
   "author": {
     "name": "Sindre Sorhus",
     "email": "sindresorhus@gmail.com",
